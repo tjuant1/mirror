@@ -22,11 +22,13 @@ import win32api
 import win32con
 import win32gui
 
-WINDOW_TITLE = "TITULO_DA_JANELA_AQUI"  # trecho do título da janela do app/jogo
+WINDOW_TITLE = "SentelhaEl"  # trecho do título da janela do app/jogo
 TEMPLATE_DIR = "img-rugard"
-MATCH_THRESHOLD = 0.75
+MATCH_THRESHOLD = 0.65
 TOGGLE_KEY = win32con.VK_F8
 DEBUG_SHOW = False  # True mostra uma janela com o bounding box do melhor match (mais lento, útil só pra calibrar)
+DOWNSCALE = 0.6  # busca em resolução reduzida (muito mais rápido, e reduz ruído de amostragem); baixe mais (ex 0.4) se ainda estiver lento, ou suba se estiver perdendo o NPC
+MATCH_DEBUG_FILE = "last_match_debug.png"  # recorte salvo a cada match aceito, pra conferir visualmente se era o NPC mesmo
 
 
 def find_window(title_substring):
@@ -50,7 +52,7 @@ def get_window_region(hwnd):
     return {"left": origin_x, "top": origin_y, "width": right - left, "height": bottom - top}
 
 
-def load_templates(template_dir):
+def load_templates(template_dir, scale=1.0):
     templates = []
     paths = sorted(glob.glob(os.path.join(template_dir, "*.png")))
     if not paths:
@@ -73,6 +75,13 @@ def load_templates(template_dir):
         else:
             gray = img
 
+        if scale != 1.0:
+            new_w = max(1, round(gray.shape[1] * scale))
+            new_h = max(1, round(gray.shape[0] * scale))
+            gray = cv2.resize(gray, (new_w, new_h), interpolation=cv2.INTER_AREA)
+            if mask is not None:
+                mask = cv2.resize(mask, (new_w, new_h), interpolation=cv2.INTER_NEAREST)
+
         method = cv2.TM_CCORR_NORMED if mask is not None else cv2.TM_CCOEFF_NORMED
         templates.append({"name": os.path.basename(path), "gray": gray, "mask": mask, "method": method})
         mask_txt = ", com mascara alfa" if mask is not None else ""
@@ -88,6 +97,7 @@ def best_match(frame_gray, templates):
         if h > frame_gray.shape[0] or w > frame_gray.shape[1]:
             continue
         result = cv2.matchTemplate(frame_gray, tpl["gray"], tpl["method"], mask=tpl["mask"])
+        result = np.nan_to_num(result, nan=-1.0, posinf=-1.0, neginf=-1.0)
         _, max_val, _, max_loc = cv2.minMaxLoc(result)
         if best is None or max_val > best["score"]:
             best = {"score": max_val, "loc": max_loc, "size": (w, h), "name": tpl["name"]}
@@ -109,7 +119,7 @@ def key_just_pressed(vk_code, state):
 
 
 def main():
-    templates = load_templates(TEMPLATE_DIR)
+    templates = load_templates(TEMPLATE_DIR, scale=DOWNSCALE)
 
     hwnd = find_window(WINDOW_TITLE)
     if hwnd is None:
@@ -147,7 +157,13 @@ def main():
                 continue
 
             shot = np.array(sct.grab(region))
-            frame_gray = cv2.cvtColor(shot, cv2.COLOR_BGRA2GRAY)
+            frame_gray_full = cv2.cvtColor(shot, cv2.COLOR_BGRA2GRAY)
+            if DOWNSCALE != 1.0:
+                small_w = max(1, round(frame_gray_full.shape[1] * DOWNSCALE))
+                small_h = max(1, round(frame_gray_full.shape[0] * DOWNSCALE))
+                frame_gray = cv2.resize(frame_gray_full, (small_w, small_h), interpolation=cv2.INTER_AREA)
+            else:
+                frame_gray = frame_gray_full
 
             match = best_match(frame_gray, templates)
             frame_count += 1
@@ -173,11 +189,20 @@ def main():
                 last_fps_print = now
 
             if match and match["score"] >= MATCH_THRESHOLD:
-                w, h = match["size"]
+                inv = 1.0 / DOWNSCALE
                 x, y = match["loc"]
-                center_x = region["left"] + x + w // 2
-                center_y = region["top"] + y + h // 2
-                print(f"[match] '{match['name']}' score={match['score']:.3f} em ({center_x}, {center_y})")
+                w, h = match["size"]
+                orig_x, orig_y = round(x * inv), round(y * inv)
+                orig_w, orig_h = round(w * inv), round(h * inv)
+                center_x = region["left"] + orig_x + orig_w // 2
+                center_y = region["top"] + orig_y + orig_h // 2
+
+                crop = shot[orig_y:orig_y + orig_h, orig_x:orig_x + orig_w]
+                if crop.size > 0:
+                    cv2.imwrite(MATCH_DEBUG_FILE, crop)
+
+                print(f"[match] '{match['name']}' score={match['score']:.3f} em ({center_x}, {center_y}) "
+                      f"| recorte salvo em {MATCH_DEBUG_FILE}")
                 click_at(center_x, center_y)
                 print("[ok] clique realizado. Encerrando.")
                 break
