@@ -22,13 +22,14 @@ import win32api
 import win32con
 import win32gui
 
-WINDOW_TITLE = "SentelhaEl"  # trecho do título da janela do app/jogo
+WINDOW_TITLE = "InfowP"  # trecho do título da janela do app/jogo
 TEMPLATE_DIR = "img-rugard"
 MATCH_THRESHOLD = 0.65
 TOGGLE_KEY = win32con.VK_F8
 DEBUG_SHOW = False  # True mostra uma janela com o bounding box do melhor match (mais lento, útil só pra calibrar)
 DOWNSCALE = 0.6  # busca em resolução reduzida (muito mais rápido, e reduz ruído de amostragem); baixe mais (ex 0.4) se ainda estiver lento, ou suba se estiver perdendo o NPC
 MATCH_DEBUG_FILE = "last_match_debug.png"  # recorte salvo a cada match aceito, pra conferir visualmente se era o NPC mesmo
+EXCLUDE_BOTTOM_FRACTION = 0.13  # ignora essa fração inferior da janela (barra de habilidades/vida/mana) pra nunca casar com HUD fixo
 
 
 def find_window(title_substring):
@@ -111,6 +112,18 @@ def click_at(x, y):
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
 
 
+def double_click_at(x, y):
+    click_at(x, y)
+    time.sleep(0.08)
+    click_at(x, y)
+
+
+def press_enter():
+    win32api.keybd_event(win32con.VK_RETURN, 0, 0, 0)
+    time.sleep(0.03)
+    win32api.keybd_event(win32con.VK_RETURN, 0, win32con.KEYEVENTF_KEYUP, 0)
+
+
 def key_just_pressed(vk_code, state):
     pressed = win32api.GetAsyncKeyState(vk_code) & 0x8000 != 0
     edge = pressed and not state["was_pressed"]
@@ -157,7 +170,8 @@ def main():
                 continue
 
             shot = np.array(sct.grab(region))
-            frame_gray_full = cv2.cvtColor(shot, cv2.COLOR_BGRA2GRAY)
+            search_h = round(shot.shape[0] * (1.0 - EXCLUDE_BOTTOM_FRACTION))
+            frame_gray_full = cv2.cvtColor(shot[:search_h], cv2.COLOR_BGRA2GRAY)
             if DOWNSCALE != 1.0:
                 small_w = max(1, round(frame_gray_full.shape[1] * DOWNSCALE))
                 small_h = max(1, round(frame_gray_full.shape[0] * DOWNSCALE))
@@ -203,8 +217,10 @@ def main():
 
                 print(f"[match] '{match['name']}' score={match['score']:.3f} em ({center_x}, {center_y}) "
                       f"| recorte salvo em {MATCH_DEBUG_FILE}")
-                click_at(center_x, center_y)
-                print("[ok] clique realizado. Encerrando.")
+                double_click_at(center_x, center_y)
+                time.sleep(0.5)
+                press_enter()
+                print("[ok] duplo clique + Enter realizados. Encerrando.")
                 break
     except KeyboardInterrupt:
         print("\n[fim] interrompido pelo usuario.")

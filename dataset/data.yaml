@@ -1,0 +1,6 @@
+path: C:/QA/apps/mirror/dataset
+train: images/train
+val: images/val
+
+names:
+  0: rugard_npc

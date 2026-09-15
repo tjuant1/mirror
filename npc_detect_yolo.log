@@ -1,0 +1,11 @@
+[modelo] carregando runs/detect/runs/rugard_v4/weights/best.pt ...
+[modelo] pronto
+[ok] janela encontrada: 'InfowP (1082/200rr) - MEGAMU Sv31' (hwnd=1248016)
+C:\QA\apps\mirror\detect_rugard_npc_yolo.py:105: DeprecationWarning: mss.mss is deprecated and will be removed in a future release; use mss.MSS instead
+  sct = mss.mss()
+Pressione F8 para ligar a varredura (e de novo para pausar). Ctrl+C encerra.
+[status] varredura LIGADA
+[debug] ~0.1 fps | melhor score atual: -
+[debug] ~40.4 fps | melhor score atual: 0.56
+[match] score=0.558 em (904, 1151) | recorte salvo em last_match_debug.png
+[ok] duplo clique + Enter realizados. Encerrando.
