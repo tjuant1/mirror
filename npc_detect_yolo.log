@@ -1,11 +1,50 @@
-[modelo] carregando runs/detect/runs/rugard_v4/weights/best.pt ...
+[modelo] carregando runs/detect/runs/rugard_v5/weights/best.pt ...
 [modelo] pronto
-[ok] janela encontrada: 'InfowP (1082/200rr) - MEGAMU Sv31' (hwnd=1248016)
-C:\QA\apps\mirror\detect_rugard_npc_yolo.py:105: DeprecationWarning: mss.mss is deprecated and will be removed in a future release; use mss.MSS instead
+[ok] janela encontrada: 'SentelhaEl (787/149rr) - MEGAMU Sv31' (hwnd=987706)
+C:\QA\apps\mirror\detect_rugard_npc_yolo.py:157: DeprecationWarning: mss.mss is deprecated and will be removed in a future release; use mss.MSS instead
   sct = mss.mss()
-Pressione F8 para ligar a varredura (e de novo para pausar). Ctrl+C encerra.
-[status] varredura LIGADA
-[debug] ~0.1 fps | melhor score atual: -
-[debug] ~40.4 fps | melhor score atual: 0.56
-[match] score=0.558 em (904, 1151) | recorte salvo em last_match_debug.png
-[ok] duplo clique + Enter realizados. Encerrando.
+============================================================
+F8 liga/desliga a varredura. Ctrl+C encerra de vez.
+============================================================
+>>> VARREDURA LIGADA <<<
+[debug] ~0.0 fps | melhor score atual: -
+[debug] ~34.2 fps | melhor score atual: -
+[debug] ~39.0 fps | melhor score atual: -
+[debug] ~36.3 fps | melhor score atual: -
+[debug] ~36.9 fps | melhor score atual: -
+[debug] ~38.5 fps | melhor score atual: -
+[debug] ~33.0 fps | melhor score atual: -
+[debug] ~29.3 fps | melhor score atual: -
+[debug] ~29.3 fps | melhor score atual: -
+[debug] ~30.6 fps | melhor score atual: -
+[debug] ~31.9 fps | melhor score atual: -
+[debug] ~31.7 fps | melhor score atual: -
+[debug] ~31.2 fps | melhor score atual: -
+[debug] ~30.6 fps | melhor score atual: -
+[match] score=0.652 em (1299, 902) | recorte salvo em last_match_debug.png
+[confirm] dialogo NAO detectado (melhor score=0.267, limiar=0.55) -- print salvo em confirm_debug.png
+[aviso] clique nao mostrou o dialogo de confirmacao (provavel falso positivo) -- Enter NAO enviado.
+[debug] ~16.0 fps | melhor score atual: -
+[debug] ~27.1 fps | melhor score atual: -
+[debug] ~27.8 fps | melhor score atual: -
+[debug] ~31.2 fps | melhor score atual: -
+[debug] ~32.3 fps | melhor score atual: -
+[debug] ~29.3 fps | melhor score atual: -
+[debug] ~31.4 fps | melhor score atual: -
+[match] score=0.636 em (2535, 882) | recorte salvo em last_match_debug.png
+[confirm] dialogo NAO detectado (melhor score=0.295, limiar=0.55) -- print salvo em confirm_debug.png
+[aviso] clique nao mostrou o dialogo de confirmacao (provavel falso positivo) -- Enter NAO enviado.
+[debug] ~16.9 fps | melhor score atual: -
+[match] score=0.633 em (1312, 903) | recorte salvo em last_match_debug.png
+[confirm] dialogo NAO detectado (melhor score=0.210, limiar=0.55) -- print salvo em confirm_debug.png
+[aviso] clique nao mostrou o dialogo de confirmacao (provavel falso positivo) -- Enter NAO enviado.
+[debug] ~11.9 fps | melhor score atual: -
+[debug] ~31.3 fps | melhor score atual: -
+[debug] ~29.8 fps | melhor score atual: -
+[debug] ~34.9 fps | melhor score atual: -
+[debug] ~32.6 fps | melhor score atual: -
+[debug] ~33.1 fps | melhor score atual: -
+[debug] ~32.9 fps | melhor score atual: -
+>>> VARREDURA DESLIGADA <<<
+>>> VARREDURA LIGADA <<<
+[erro] a janela alvo foi fechada.
