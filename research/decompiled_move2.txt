@@ -1,0 +1,63 @@
+
+================================================================================
+LocalCharacterBody_KODIBLNBDKN @ 180d661f0
+================================================================================
+Ghidra name: Mega.LocalCharacterBody$$KODIBLNBDKN
+
+
+undefined8
+Mega_LocalCharacterBody__KODIBLNBDKN
+          (longlong param_1,longlong param_2,float param_3,longlong param_4,undefined1 param_5,
+          undefined1 param_6)
+
+{
+  longlong lVar1;
+  undefined8 uVar2;
+  float fVar3;
+  float extraout_XMM0_Da;
+  float extraout_XMM0_Da_00;
+  
+  if (DAT_185769f04 == '\0') {
+    FUN_1802e8ca0(&DAT_1855f4390);
+    LOCK();
+    UNLOCK();
+    DAT_185769f04 = '\x01';
+  }
+  if ((*(longlong *)(param_1 + 0x68) != 0) && (param_2 != 0)) {
+    fVar3 = (float)FUN_180357460();
+    FUN_180357460();
+    if (fVar3 + extraout_XMM0_Da < 0.0) {
+      FUN_18036d2e8();
+      fVar3 = extraout_XMM0_Da_00;
+    }
+    else {
+      fVar3 = SQRT(fVar3 + extraout_XMM0_Da);
+    }
+    if (fVar3 <= param_3) {
+      if (param_4 != 0) {
+        (**(code **)(param_4 + 0x18))
+                  (*(undefined8 *)(param_4 + 0x40),*(undefined8 *)(param_4 + 0x28));
+      }
+      return 1;
+    }
+    lVar1 = *(longlong *)(param_1 + 400);
+    uVar2 = FUN_1803389a0(DAT_1855f4390);
+    LNKMLHBLNKB___ctor(uVar2,param_2,param_3,1,param_5,param_4,param_6,1,0);
+    if (lVar1 != 0) {
+      if (DAT_185769b0d == '\0') {
+        FUN_1802e8ca0(&DAT_1855f3da8);
+        LOCK();
+        UNLOCK();
+        DAT_185769b0d = '\x01';
+      }
+      lVar1 = *(longlong *)(lVar1 + 0x30);
+      if (lVar1 != 0) {
+        System_Collections_Generic_LinkedList<object>__AddLast(lVar1,uVar2,DAT_1855f3da8);
+        return 0;
+      }
+    }
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_18029cb10();
+}
+

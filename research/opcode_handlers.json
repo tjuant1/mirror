@@ -1,0 +1,1698 @@
+[
+ {
+  "opcode": "C1:D2:03",
+  "cls": "CashShop",
+  "method": "FHCPIPPCKPP",
+  "rva": "0x1577730",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D2:12",
+  "cls": "CashShop",
+  "method": "FLHFLBMLKLE",
+  "rva": "0x157B720",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D2:06",
+  "cls": "CashShop",
+  "method": "MMAHPCGOHKC",
+  "rva": "0x157C190",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D2:00",
+  "cls": "CashShop",
+  "method": "EGAPEEDMIDG",
+  "rva": "0x157E840",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D2:02",
+  "cls": "CashShop",
+  "method": "LPLMBNPONCL",
+  "rva": "0x157F370",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D2:0D",
+  "cls": "CashShop",
+  "method": "CBBKNOCLKIG",
+  "rva": "0x157F430",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D2:05",
+  "cls": "CashShop",
+  "method": "BMMDBMHCGMF",
+  "rva": "0x157F9C0",
+  "has_bytes": false,
+  "params": "int JGEOLNBJBHC, int MBJIJOCOFFG"
+ },
+ {
+  "opcode": "C1:D2:01",
+  "cls": "CashShop",
+  "method": "KOGIPLHLHGK",
+  "rva": "0x157FCC0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D2:0B",
+  "cls": "CashShop",
+  "method": "HEGMMPIOJEA",
+  "rva": "0x157FE30",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D2:0E",
+  "cls": "CashShop",
+  "method": "DBPEHFJCDPF",
+  "rva": "0x15803F0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D2:04",
+  "cls": "CashShop",
+  "method": "OMDLBOFHHEK",
+  "rva": "0x1582430",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C3:36",
+  "cls": "Trade",
+  "method": "DFNKBFIHCGM",
+  "rva": "0x2016A60",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:39",
+  "cls": "Trade",
+  "method": "JOEEAFPAABB",
+  "rva": "0x2016FD0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:37",
+  "cls": "Trade",
+  "method": "HFOGJHMNLLG",
+  "rva": "0x20175B0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:[3A:3D]",
+  "cls": "Trade",
+  "method": "INLHDFHPEPN",
+  "rva": "0x2019000",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH, int IAENECGOMBA"
+ },
+ {
+  "opcode": "C1:38",
+  "cls": "Trade",
+  "method": "JELLPIDGFBN",
+  "rva": "0x2019410",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:3D",
+  "cls": "Trade",
+  "method": "BLPGLDCJPEB",
+  "rva": "0x2019C00",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:3C",
+  "cls": "Trade",
+  "method": "AEPOINEFEKM",
+  "rva": "0x2019E70",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:3B",
+  "cls": "Trade",
+  "method": "LBLGAEHJFNK",
+  "rva": "0x201A560",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:83",
+  "cls": "Warehouse",
+  "method": "FAKMDCHIEOP",
+  "rva": "0x201B990",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:81",
+  "cls": "Warehouse",
+  "method": "AMKDMBNHPFK",
+  "rva": "0x201F690",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:82",
+  "cls": "Warehouse",
+  "method": "IPLMJOLEDAP",
+  "rva": "0x201FA40",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:34",
+  "cls": "CKLHALGAJNO",
+  "method": "KPMDFIJLBJK",
+  "rva": "0x104B060",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:BA",
+  "cls": "CKLHALGAJNO",
+  "method": "LJLHHDMEHAH",
+  "rva": "0x104BD30",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:A8",
+  "cls": "CKLHALGAJNO",
+  "method": "NALKOILNDAA",
+  "rva": "0x104C5B0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:A7",
+  "cls": "CKLHALGAJNO",
+  "method": "LDCMKKPGOGL",
+  "rva": "0x104D1E0",
+  "has_bytes": false,
+  "params": "int AMOCHPGKKEA, int OCKCCOBBGNP"
+ },
+ {
+  "opcode": "C1:4B",
+  "cls": "CKLHALGAJNO",
+  "method": "PIJLGNOLCOC",
+  "rva": "0x104D390",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B0",
+  "cls": "CKLHALGAJNO",
+  "method": "NIIAEBADMFH",
+  "rva": "0x104D9F0",
+  "has_bytes": false,
+  "params": "Body PDBIPHJGOLK"
+ },
+ {
+  "opcode": "C1:1E",
+  "cls": "CKLHALGAJNO",
+  "method": "BKNKNLHHOMI",
+  "rva": "0x104F920",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D3:[PROTOCOL_CODE4]",
+  "cls": "CKLHALGAJNO",
+  "method": "LLDBNPIJIJP",
+  "rva": "0x1050CA0",
+  "has_bytes": false,
+  "params": "JNELKGMILJK LMJMEFOIMOP, Body[] NIHIGOIJBBM, Coord JKPFCFKMIJB, int EPDAMECGMNI"
+ },
+ {
+  "opcode": "C1:DF:[PROTOCOL_CODE2]",
+  "cls": "CKLHALGAJNO",
+  "method": "DFLDPGDOOCO",
+  "rva": "0x10511A0",
+  "has_bytes": false,
+  "params": "Body PDBIPHJGOLK"
+ },
+ {
+  "opcode": "C1:69",
+  "cls": "CKLHALGAJNO",
+  "method": "NOPAEFGEMIA",
+  "rva": "0x1051440",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:19",
+  "cls": "CKLHALGAJNO",
+  "method": "LJEHMDDIPJH",
+  "rva": "0x1052E60",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:4A",
+  "cls": "CKLHALGAJNO",
+  "method": "LPLLGDEIDHM",
+  "rva": "0x1053200",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:01",
+  "cls": "Chat",
+  "method": "IGHIAIGFCEP",
+  "rva": "0x10AA200",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:00",
+  "cls": "Chat",
+  "method": "ALIIEGLFLJK",
+  "rva": "0x10AC9E0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB",
+  "rva": "0x10AD490",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:E4",
+  "cls": "Chat",
+  "method": "CHPMLAKAKKB",
+  "rva": "0x10AF1A0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:0C",
+  "cls": "Chat",
+  "method": "LGFFMALBAGI",
+  "rva": "0x10AFED0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:02",
+  "cls": "Chat",
+  "method": "CABGJPOLCMG",
+  "rva": "0x10B0D50",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:07",
+  "cls": "JLEBLINDLCE",
+  "method": "NCNFJKONOFD",
+  "rva": "0x10CD350",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:DF:[PROTOCOL_CODE2]",
+  "cls": "JLEBLINDLCE",
+  "method": "KIEEJLHMNKL",
+  "rva": "0x10CDAB0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D8",
+  "cls": "JLEBLINDLCE",
+  "method": "EEKIFIGBOAB",
+  "rva": "0x10CE1B0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B2:02",
+  "cls": "CastleSiege",
+  "method": "DBHMHAEHPGE",
+  "rva": "0x10F4BC0",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:B2:20",
+  "cls": "CastleSiege",
+  "method": "PANPAENCMBL",
+  "rva": "0x10F5700",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B4",
+  "cls": "CastleSiege",
+  "method": "PGNPOGJJFLJ",
+  "rva": "0x10F5AE0",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:B7:04",
+  "cls": "CastleSiege",
+  "method": "EMGODEEDJAP",
+  "rva": "0x10F72B0",
+  "has_bytes": false,
+  "params": "int OCKCCOBBGNP"
+ },
+ {
+  "opcode": "C1:B2:1E",
+  "cls": "CastleSiege",
+  "method": "BKHHPPMALKM",
+  "rva": "0x10F7520",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B2:03",
+  "cls": "CastleSiege",
+  "method": "COIPKJPDNIA",
+  "rva": "0x10F7E20",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:B2:01",
+  "cls": "CastleSiege",
+  "method": "IDHAAGBAOHA",
+  "rva": "0x10F8000",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:B2:04",
+  "cls": "CastleSiege",
+  "method": "OECGHMJGPHJ",
+  "rva": "0x10F8610",
+  "has_bytes": false,
+  "params": "byte JFJHGJBPKEF"
+ },
+ {
+  "opcode": "C1:B2:16",
+  "cls": "CastleSiege",
+  "method": "NLKEBDKPCFN",
+  "rva": "0x10F8E20",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B2:1F",
+  "cls": "CastleSiege",
+  "method": "COOCELNIHLB",
+  "rva": "0x10F92D0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B7:01",
+  "cls": "CastleSiege",
+  "method": "BIOAFGGEJHC",
+  "rva": "0x10F94B0",
+  "has_bytes": false,
+  "params": "int OCKCCOBBGNP, int FBFPNNBNEDE"
+ },
+ {
+  "opcode": "C1:B2:09",
+  "cls": "CastleSiege",
+  "method": "KHAIICABNAK",
+  "rva": "0x10F9940",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B7:00",
+  "cls": "CastleSiege",
+  "method": "LLOMGKJIHMJ",
+  "rva": "0x10FB180",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B2:15",
+  "cls": "CastleSiege",
+  "method": "NCOBOOGGMCJ",
+  "rva": "0x10FD930",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B2:1A",
+  "cls": "CastleSiege",
+  "method": "BFOPGGKJODD",
+  "rva": "0x10FE6E0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B2:00",
+  "cls": "CastleSiege",
+  "method": "MIIJKLAHEIP",
+  "rva": "0x1100A70",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:B2:14",
+  "cls": "CastleSiege",
+  "method": "CMNNIJPGNDD",
+  "rva": "0x11013C0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B9:05",
+  "cls": "CastleSiege",
+  "method": "EEBPCAAAMKE",
+  "rva": "0x1105600",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:B2:08",
+  "cls": "CastleSiege",
+  "method": "FGKEGHEHLMI",
+  "rva": "0x1105760",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B2:19",
+  "cls": "CastleSiege",
+  "method": "PAJDKPLFFDF",
+  "rva": "0x1105910",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B5",
+  "cls": "CastleSiege",
+  "method": "HLDDLHLIALA",
+  "rva": "0x11081C0",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:B7:02",
+  "cls": "CastleSiege",
+  "method": "EGHOEFONEGA",
+  "rva": "0x1109450",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:49",
+  "cls": "IKCAPJNCNNF",
+  "method": "GFKLNNAGBFA",
+  "rva": "0x1141300",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:76:25",
+  "cls": "OKHBBGMMCJC",
+  "method": "PIPNNLJPCND",
+  "rva": "0x1141390",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:4F:04",
+  "cls": "GremoryCase",
+  "method": "PIFKBJBDECO",
+  "rva": "0x118FEA0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:4F:03",
+  "cls": "GremoryCase",
+  "method": "IFALMJKPCBK",
+  "rva": "0x1191340",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:4F:01",
+  "cls": "GremoryCase",
+  "method": "MGIFGLNJFKG",
+  "rva": "0x1196700",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:4F:02",
+  "cls": "GremoryCase",
+  "method": "NKIOHBLAAPF",
+  "rva": "0x11974A0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:4F:00",
+  "cls": "GremoryCase",
+  "method": "PLIALOAIPKC",
+  "rva": "0x119A200",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:66",
+  "cls": "GuildManager",
+  "method": "FOHCNDMGPIJ",
+  "rva": "0x119B450",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:E9",
+  "cls": "GuildManager",
+  "method": "LALGLBKGKPL",
+  "rva": "0x119DFA0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:50",
+  "cls": "GuildManager",
+  "method": "DPFGOOOMPCG",
+  "rva": "0x119E580",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:52",
+  "cls": "GuildManager",
+  "method": "GHJAAMAOFBA",
+  "rva": "0x11A1460",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:53",
+  "cls": "GuildManager",
+  "method": "FGLKJHJANPL",
+  "rva": "0x11A23C0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:5D",
+  "cls": "GuildManager",
+  "method": "FAKPCNFMEAB",
+  "rva": "0x11A3BD0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:E6",
+  "cls": "GuildManager",
+  "method": "MJKDLFNDJFP",
+  "rva": "0x11A4890",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:E1",
+  "cls": "GuildManager",
+  "method": "LKBCNJOMDOM",
+  "rva": "0x11A7710",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:EB:01",
+  "cls": "GuildManager",
+  "method": "HPEBHBMBAOA",
+  "rva": "0x11A7BA0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:51",
+  "cls": "GuildManager",
+  "method": "COGJMFBACOM",
+  "rva": "0x11A8960",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:54",
+  "cls": "GuildManager",
+  "method": "HMJILOGBGDP",
+  "rva": "0x11A92B0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:55",
+  "cls": "GuildManager",
+  "method": "MDPKCNJJLEG",
+  "rva": "0x11A9E70",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:E5",
+  "cls": "GuildManager",
+  "method": "KAIFKLNAGHK",
+  "rva": "0x11AA500",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:56",
+  "cls": "GuildManager",
+  "method": "GDOGAJMOEOM",
+  "rva": "0x11AC680",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:E7:01",
+  "cls": "MinimapManager",
+  "method": "AHGAKOPEAJE",
+  "rva": "0x1236BE0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:E7:02",
+  "cls": "MinimapManager",
+  "method": "AEKMJAFOMHK",
+  "rva": "0x12385E0",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C2:E7:05",
+  "cls": "MinimapManager",
+  "method": "DECOOFEDNJE",
+  "rva": "0x1239EE0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:E7:03",
+  "cls": "MinimapManager",
+  "method": "ELEHOCMFALK",
+  "rva": "0x123A560",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:E7:01",
+  "cls": "MinimapManager",
+  "method": "GONAGAALACC",
+  "rva": "0x123BF00",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C2:E7:04",
+  "cls": "MinimapManager",
+  "method": "LGFJPMBPOGM",
+  "rva": "0x123CB00",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D0:08",
+  "cls": "NpcManager",
+  "method": "MNCEEBNEMHE",
+  "rva": "0x11DEDE0",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C2:30",
+  "cls": "NpcManager",
+  "method": "NPEHICHNLHD",
+  "rva": "0x11DEEF0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:6F:02",
+  "cls": "NpcManager",
+  "method": "BAHKCMENOMF",
+  "rva": "0x11E2680",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D0:0A",
+  "cls": "NpcManager",
+  "method": "DCBIJNABECE",
+  "rva": "0x11E2740",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:D0:10",
+  "cls": "NpcManager",
+  "method": "KLCNPBFFMNE",
+  "rva": "0x11E3820",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:BF",
+  "cls": "NpcManager",
+  "method": "EKKANEFFENE",
+  "rva": "0x11E5F00",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:6F:00",
+  "cls": "NpcManager",
+  "method": "FNKIIGHBCFE",
+  "rva": "0x11E6120",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:30",
+  "cls": "NpcManager",
+  "method": "EOFNAPOMKIA",
+  "rva": "0x11E6B10",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D0:09",
+  "cls": "NpcManager",
+  "method": "PLLIFEMLGIN",
+  "rva": "0x11E9E00",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:31",
+  "cls": "NpcManager",
+  "method": "ILJEOFLKBJM",
+  "rva": "0x11EB8E0",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C2:31",
+  "cls": "NpcManager",
+  "method": "GMICBHANFGP",
+  "rva": "0x11F0DE0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D0:07",
+  "cls": "NpcManager",
+  "method": "GMIPMMELENA",
+  "rva": "0x11F1300",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:A2",
+  "cls": "QuestManager",
+  "method": "JPAJMKIBFDC",
+  "rva": "0x1276310",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:A4",
+  "cls": "QuestManager",
+  "method": "LDHCCMGDOJN",
+  "rva": "0x12766E0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:A3",
+  "cls": "QuestManager",
+  "method": "HICOOHMPLKP",
+  "rva": "0x1277370",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:3E:21",
+  "cls": "QuestManager",
+  "method": "HPNGEEGEBCF",
+  "rva": "0x1279390",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:3E:20",
+  "cls": "QuestManager",
+  "method": "BIFLFBEPMOP",
+  "rva": "0x127A030",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:A0",
+  "cls": "QuestManager",
+  "method": "GPGCEMFOEBB",
+  "rva": "0x127A510",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:3E:22",
+  "cls": "QuestManager",
+  "method": "MPLIINPLDLC",
+  "rva": "0x127B370",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:A1",
+  "cls": "QuestManager",
+  "method": "CNICFAMHEHL",
+  "rva": "0x127B5D0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:EC:57",
+  "cls": "ServerSwitch",
+  "method": "ONNJOKLFFBG",
+  "rva": "0x12BB820",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:EC:56",
+  "cls": "ServerSwitch",
+  "method": "KEKDLLLKBCL",
+  "rva": "0x12BD0D0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C4:F3:00",
+  "cls": "Unit",
+  "method": "OABIAMPOCBD",
+  "rva": "0x12BD650",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:27",
+  "cls": "Unit",
+  "method": "LBBENANNGJH",
+  "rva": "0x12BE230",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:16",
+  "cls": "Unit",
+  "method": "LGJLBBAEJPD",
+  "rva": "0x12BE460",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:18",
+  "cls": "Unit",
+  "method": "HENKLNFNCDP",
+  "rva": "0x12BE990",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C3:F3:05",
+  "cls": "Unit",
+  "method": "HGLOCOBFHGH",
+  "rva": "0x12BEE10",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:F3:11",
+  "cls": "Unit",
+  "method": "NFBBOEGBGOD",
+  "rva": "0x12BF320",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:DE",
+  "cls": "Unit",
+  "method": "IPGJDAKNHBO",
+  "rva": "0x12BF770",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC",
+  "rva": "0x12BF7C0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:9C",
+  "cls": "Unit",
+  "method": "HGOJPJMEJHO",
+  "rva": "0x12BFCB0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:08",
+  "cls": "Unit",
+  "method": "AIJMKDDLNJD",
+  "rva": "0x12C02C0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:1C",
+  "cls": "Unit",
+  "method": "GOMEAJHNNLH",
+  "rva": "0x12C0610",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:EC:29",
+  "cls": "Unit",
+  "method": "PIFIMLNBJCC",
+  "rva": "0x12C1150",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:10:[PROTOCOL_CODE3]",
+  "cls": "Unit",
+  "method": "ANOMNAGCDOE",
+  "rva": "0x12C13A0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:26",
+  "cls": "Unit",
+  "method": "HKNFFECEHMI",
+  "rva": "0x12C25D0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B8",
+  "cls": "Unit",
+  "method": "MPJOMHKDHLN",
+  "rva": "0x12C2880",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:17",
+  "cls": "Unit",
+  "method": "EOOGEMPGGGP",
+  "rva": "0x12C2D10",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:12",
+  "cls": "Unit",
+  "method": "IKOKIMEBBNB",
+  "rva": "0x12C2F70",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:07",
+  "cls": "Unit",
+  "method": "MGGMAILIBNL",
+  "rva": "0x12C3060",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:02",
+  "cls": "Unit",
+  "method": "BBPHPCKHAIM",
+  "rva": "0x12C3250",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:EC:30",
+  "cls": "Unit",
+  "method": "CDAAKJNAMIP",
+  "rva": "0x12C3520",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C4:F3:03",
+  "cls": "Unit",
+  "method": "LMOILLAHEBC",
+  "rva": "0x12C3690",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:E0",
+  "cls": "Unit",
+  "method": "FEFCKHBINKC",
+  "rva": "0x12C4890",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C3:F3:04",
+  "cls": "Unit",
+  "method": "HAFBPCNCPHA",
+  "rva": "0x12C4E70",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:01",
+  "cls": "Unit",
+  "method": "DFBIHMBJAAP",
+  "rva": "0x12C5390",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:21",
+  "cls": "Unit",
+  "method": "IKODAKCAHNJ",
+  "rva": "0x12C5530",
+  "has_bytes": false,
+  "params": "byte MBJHJBMKGCA"
+ },
+ {
+  "opcode": "C1:F3:15",
+  "cls": "Unit",
+  "method": "IHAHBFKMBCF",
+  "rva": "0x12C5720",
+  "has_bytes": false,
+  "params": "string PAKEDIJPENP"
+ },
+ {
+  "opcode": "C1:F3:20",
+  "cls": "Unit",
+  "method": "BIFJCGOEPNH",
+  "rva": "0x12C6150",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:2D",
+  "cls": "Unit",
+  "method": "HCLLJOIINBI",
+  "rva": "0x12C61D0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:EC:25",
+  "cls": "Unit",
+  "method": "IOFIMFNLLDH",
+  "rva": "0x12C64A0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:EC:10",
+  "cls": "Unit",
+  "method": "JAHAPPDFBLO",
+  "rva": "0x12C6710",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:EC:26",
+  "cls": "Unit",
+  "method": "ALBLEPFEEFB",
+  "rva": "0x12C6A00",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C3:F3:06",
+  "cls": "Unit",
+  "method": "KFKLKOIAKDF",
+  "rva": "0x12C6B30",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:8E",
+  "cls": "Protocol",
+  "method": "KEMBABFNOHJ",
+  "rva": "0x134AD70",
+  "has_bytes": false,
+  "params": "int MBJIJOCOFFG, int NNLEDENHKAA, int AIIMLEFPMND = 0"
+ },
+ {
+  "opcode": "C1:0E",
+  "cls": "Protocol",
+  "method": "LOJMGCEMDCP",
+  "rva": "0x134AF70",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:A5:01",
+  "cls": "Protocol",
+  "method": "KMKPELCBIKB",
+  "rva": "0x134B540",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F1:00",
+  "cls": "Protocol",
+  "method": "HFBOCGPKLMP",
+  "rva": "0x134B9C0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:F3:F0:F212",
+  "cls": "Protocol",
+  "method": "CINCIFMBNNK",
+  "rva": "0x134C260",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:DF",
+  "cls": "Protocol",
+  "method": "GPMJCNNEKPM",
+  "rva": "0x134C3F0",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C2:F3:F0:F202",
+  "cls": "Protocol",
+  "method": "PFGKCGDAAOI",
+  "rva": "0x134C7B0",
+  "has_bytes": false,
+  "params": "int AMOCHPGKKEA, int NIOHLLMJOEN, int KKNBODEOMIP, int LDEPPLBAGMN"
+ },
+ {
+  "opcode": "C1:46",
+  "cls": "Protocol",
+  "method": "LIKELLDNIPD",
+  "rva": "0x134D0C0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH, bool JJFBIBEFHKB = False"
+ },
+ {
+  "opcode": "C3:F1:01",
+  "cls": "Protocol",
+  "method": "KIIGCCBNELP",
+  "rva": "0x134E220",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:F3:F0:F000",
+  "cls": "Protocol",
+  "method": "HHKBPJJDEKH",
+  "rva": "0x134EF70",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:9C",
+  "cls": "Protocol",
+  "method": "IOAJHPMHIHJ",
+  "rva": "0x134F2F0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C3:F1:02",
+  "cls": "Protocol",
+  "method": "KLDCMDMJOGA",
+  "rva": "0x134F540",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:F3:F0:F200",
+  "cls": "Protocol",
+  "method": "GFHJEFEENML",
+  "rva": "0x1350170",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:F3:F0:F1B4",
+  "cls": "Protocol",
+  "method": "IFICLPJDNCA",
+  "rva": "0x13502B0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:F3:F0:F211",
+  "cls": "Protocol",
+  "method": "HLHIFMNLFFE",
+  "rva": "0x1350830",
+  "has_bytes": false,
+  "params": "string AMOCHPGKKEA"
+ },
+ {
+  "opcode": "C1:0F",
+  "cls": "Protocol",
+  "method": "JDOFKCOFADN",
+  "rva": "0x1357CB0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:F3:F0:F203",
+  "cls": "Protocol",
+  "method": "PFDBLHLEFAC",
+  "rva": "0x1357F00",
+  "has_bytes": false,
+  "params": "int AKGOOBJOOEA"
+ },
+ {
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID",
+  "rva": "0x1358390",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:F3:F0:F201",
+  "cls": "Protocol",
+  "method": "POPOMFCJAKO",
+  "rva": "0x13583E0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:40",
+  "cls": "Protocol",
+  "method": "LJDINMKMPBC",
+  "rva": "0x1358A80",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B1:01",
+  "cls": "MapServerMove",
+  "method": "IILACEPGLKB",
+  "rva": "0x1362E00",
+  "has_bytes": false,
+  "params": ""
+ },
+ {
+  "opcode": "C1:B1:01",
+  "cls": "MapServerMove",
+  "method": "EAGNJLNJIEP",
+  "rva": "0x1367280",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:B1:00",
+  "cls": "MapServerMove",
+  "method": "KEKJDAIIGBB",
+  "rva": "0x1367A50",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:AA:04",
+  "cls": "UserDuel",
+  "method": "MJOBFEGOEGF",
+  "rva": "0x15DF4F0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:AA:0C",
+  "cls": "UserDuel",
+  "method": "CNJEMBEBDIG",
+  "rva": "0x15E1020",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:AA:06",
+  "cls": "UserDuel",
+  "method": "BAKFPFOAMMI",
+  "rva": "0x15E3C30",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:AA:02",
+  "cls": "UserDuel",
+  "method": "GEMJDJIMJKG",
+  "rva": "0x15E41E0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:AA:01",
+  "cls": "UserDuel",
+  "method": "HLEJLHFIDBH",
+  "rva": "0x15E4450",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:AA:03",
+  "cls": "UserDuel",
+  "method": "NJPMDMGOPGH",
+  "rva": "0x15E4E30",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C3:26",
+  "cls": "UserInventory",
+  "method": "ADFCDDEMILL",
+  "rva": "0x15FABE0",
+  "has_bytes": false,
+  "params": "int IKNLAPHHLOF, int IPIOHHJDKJL, int MBJIJOCOFFG"
+ },
+ {
+  "opcode": "C3:22",
+  "cls": "UserInventory",
+  "method": "DFPMPFDJPOH",
+  "rva": "0x15FAE90",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C3:33",
+  "cls": "UserInventory",
+  "method": "OJIPENCKHHM",
+  "rva": "0x15FBE70",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C3:E8:00",
+  "cls": "UserInventory",
+  "method": "HPLCAMEPEOP",
+  "rva": "0x15FBF20",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:2A",
+  "cls": "UserInventory",
+  "method": "AIFKHFNEFML",
+  "rva": "0x15FE460",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C3:34",
+  "cls": "UserInventory",
+  "method": "DAGNPIPADGL",
+  "rva": "0x15FE770",
+  "has_bytes": false,
+  "params": "int JFJHGJBPKEF, int MBJIJOCOFFG"
+ },
+ {
+  "opcode": "C1:D0:F1",
+  "cls": "UserInventory",
+  "method": "HAKDHJAEFFI",
+  "rva": "0x15FFE20",
+  "has_bytes": false,
+  "params": "ItemStorage.HBAJLPGJLJC MBJIJOCOFFG, int JFJHGJBPKEF"
+ },
+ {
+  "opcode": "C1:34",
+  "cls": "UserInventory",
+  "method": "JMIFHBFCEHA",
+  "rva": "0x16004A0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D0:F1",
+  "cls": "UserInventory",
+  "method": "FHAIHLNLGEK",
+  "rva": "0x1601C90",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:28",
+  "cls": "UserInventory",
+  "method": "KCLPNMAEPBB",
+  "rva": "0x1601F10",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:D0:F0",
+  "cls": "UserInventory",
+  "method": "DGGIENIDHMA",
+  "rva": "0x1602350",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C3:25",
+  "cls": "UserInventory",
+  "method": "DBLGLJGPJJA",
+  "rva": "0x1602EB0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C3:24",
+  "cls": "UserInventory",
+  "method": "EMDMOKDDJBM",
+  "rva": "0x1605B00",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:22",
+  "cls": "UserInventory",
+  "method": "LHDIJIKINAH",
+  "rva": "0x1606040",
+  "has_bytes": false,
+  "params": "int OCKCCOBBGNP, MCKFAIEPAEH DFLNLDKLOPD"
+ },
+ {
+  "opcode": "C3:35",
+  "cls": "UserInventory",
+  "method": "IAMNJLBOAGO",
+  "rva": "0x1606450",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:A9",
+  "cls": "UserInventory",
+  "method": "MMDPEEJPBBC",
+  "rva": "0x16070D0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:14",
+  "cls": "UserInventory",
+  "method": "FDKIKKOGLMC",
+  "rva": "0x16078E0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:13",
+  "cls": "UserInventory",
+  "method": "CCCFPNBFEFD",
+  "rva": "0x1607F60",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:23",
+  "cls": "UserInventory",
+  "method": "FPFGBFHICEI",
+  "rva": "0x16081B0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:32",
+  "cls": "UserInventory",
+  "method": "AHOANIPPKJG",
+  "rva": "0x1609310",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:BF:20",
+  "cls": "UserInventory",
+  "method": "PHFFONLMJDO",
+  "rva": "0x16098A0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C4:F3:10",
+  "cls": "UserInventory",
+  "method": "DECKKFGMLKL",
+  "rva": "0x160B3A0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:52",
+  "cls": "UserMasterSkill",
+  "method": "GMGGIAPCJFN",
+  "rva": "0x1618BB0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C3:F3:50",
+  "cls": "UserMasterSkill",
+  "method": "EFPMDLMACMG",
+  "rva": "0x161DE70",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:F3:53",
+  "cls": "UserMasterSkill",
+  "method": "FFLPICAOECO",
+  "rva": "0x161E510",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:51",
+  "cls": "UserMasterSkill",
+  "method": "GDNMCMENECK",
+  "rva": "0x16228B0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:F3:30",
+  "cls": "UserOption",
+  "method": "MFKLIMLJAII",
+  "rva": "0x1637E60",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:42",
+  "cls": "UserParty",
+  "method": "MPMPHAGHBFK",
+  "rva": "0x16538A0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:BF:52",
+  "cls": "UserParty",
+  "method": "MPFIKHNCEPK",
+  "rva": "0x1655680",
+  "has_bytes": false,
+  "params": "bool MBJHJBMKGCA"
+ },
+ {
+  "opcode": "C2:41",
+  "cls": "UserParty",
+  "method": "KEBLMDPHMBH",
+  "rva": "0x1656AF0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:EF:07",
+  "cls": "UserParty",
+  "method": "EABFGCFBIID",
+  "rva": "0x16583D0",
+  "has_bytes": false,
+  "params": "string PAKEDIJPENP"
+ },
+ {
+  "opcode": "C1:BF:54",
+  "cls": "UserParty",
+  "method": "BPJMHAEFOEH",
+  "rva": "0x16591C0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:BF:56",
+  "cls": "UserParty",
+  "method": "BKHNKNEIEND",
+  "rva": "0x165A950",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:43",
+  "cls": "UserParty",
+  "method": "PFCFEDEOOKM",
+  "rva": "0x1660C30",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C2:40",
+  "cls": "UserParty",
+  "method": "LLDHKMHNOOD",
+  "rva": "0x1661560",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:2E",
+  "cls": "UserParty",
+  "method": "JMMBNLDCCCP",
+  "rva": "0x16618D0",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ },
+ {
+  "opcode": "C1:44",
+  "cls": "UserParty",
+  "method": "AOGLCGACMIH",
+  "rva": "0x1662590",
+  "has_bytes": true,
+  "params": "byte[] PPOCPPEJCIH"
+ }
+]
