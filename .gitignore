@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+
+# Ghidra install + analyzed project (huge, re-derivable from GameAssembly.dll)
+ghidra/ghidra.zip
+ghidra/ghidra_12.1.3_PUBLIC/
+ghidra/project/
+ghidra/*.log
+
+# Il2CppDumper tool + raw dumps (huge, regenerable by re-running the tool)
+il2cppdumper/

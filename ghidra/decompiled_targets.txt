@@ -1,0 +1,211 @@
+
+================================================================================
+NpcManager_C1_31 @ 1811eb8e0
+================================================================================
+Function name in Ghidra: Mega.NpcManager$$ILJEOFLKBJM
+
+
+void Mega_NpcManager__ILJEOFLKBJM(void)
+
+{
+  undefined4 uVar1;
+  longlong lVar2;
+  undefined8 uVar3;
+  undefined2 local_res10;
+  undefined1 local_res12;
+  undefined2 local_res18;
+  undefined1 local_res1a;
+  
+  if (DAT_18576ba38 == '\0') {
+    FUN_1802e8ca0(&DAT_1855ceeb0);
+    LOCK();
+    UNLOCK();
+    FUN_1802e8ca0(&DAT_1855ceeb8);
+    LOCK();
+    UNLOCK();
+    FUN_1802e8ca0(&DAT_18562e8f0);
+    LOCK();
+    UNLOCK();
+    DAT_18576ba38 = '\x01';
+  }
+  local_res10 = 0;
+  local_res12 = 0;
+  if (*(int *)(DAT_18562e8f0 + 0xe0) == 0) {
+    FUN_180309140();
+  }
+  lVar2 = DAT_1855ceeb8;
+  if (*(longlong *)(DAT_1855ceeb8 + 0x38) == 0) {
+    FUN_1802e8ca0(&DAT_18562e8f0);
+    LOCK();
+    UNLOCK();
+    if (*(longlong *)(lVar2 + 0x38) == 0) {
+      FUN_180327b40(lVar2);
+    }
+  }
+  lVar2 = **(longlong **)(lVar2 + 0x38);
+  if ((*(byte *)(lVar2 + 0x135) & 1) == 0) {
+    lVar2 = FUN_180327ac0(lVar2);
+  }
+  uVar3 = FUN_18033a200(lVar2 + 0x20);
+  if (*(int *)(DAT_18562e8f0 + 0xe0) == 0) {
+    FUN_180309140();
+  }
+  uVar1 = System_Runtime_InteropServices_Marshal__SizeOf(uVar3,0);
+  HJEBGDIMIOB__LADOIEJMHKK(&local_res10,0x31,uVar1);
+  lVar2 = Mega_GameBehaviour__ICNHJBMFGPB(0);
+  local_res18 = local_res10;
+  local_res1a = local_res12;
+  uVar3 = FUN_1803385f0(DAT_1855ceeb0,&local_res18);
+  if (lVar2 != 0) {
+    uVar3 = PAFIAMHINPA__FPEIMNLAPIB(uVar3,0);
+    Mega_GSConnection__OBMAFGPHCDI(lVar2,uVar3,0,0,0);
+    return;
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_18029cb10();
+}
+
+
+================================================================================
+NpcManager_C2_31 @ 1811f0de0
+================================================================================
+Function name in Ghidra: Mega.NpcManager$$GMICBHANFGP
+
+
+void Mega_NpcManager__GMICBHANFGP(undefined8 param_1)
+
+{
+  longlong *plVar1;
+  char cVar2;
+  longlong lVar3;
+  longlong lVar4;
+  int iVar5;
+  undefined1 local_38 [8];
+  undefined8 local_30;
+  undefined1 local_28 [25];
+  uint uStack_f;
+  
+  if (DAT_18576ba55 == '\0') {
+    FUN_1802e8ca0(&DAT_1855ceee0);
+    LOCK();
+    UNLOCK();
+    FUN_1802e8ca0(&DAT_185609f28);
+    LOCK();
+    UNLOCK();
+    FUN_1802e8ca0(&DAT_1855ceef0);
+    LOCK();
+    UNLOCK();
+    FUN_1802e8ca0(&DAT_1855ceed8);
+    LOCK();
+    UNLOCK();
+    DAT_18576ba55 = '\x01';
+  }
+  if (*(int *)(DAT_185609f28 + 0xe0) == 0) {
+    FUN_180309140();
+  }
+  if (DAT_18576567e == '\0') {
+    FUN_1802e8ca0(&DAT_185609f28);
+    LOCK();
+    UNLOCK();
+    DAT_18576567e = '\x01';
+  }
+  if (*(int *)(DAT_185609f28 + 0xe0) == 0) {
+    FUN_180309140();
+  }
+  if (*(char *)(*(longlong *)(DAT_185609f28 + 0xb8) + 1) != '\0') {
+    Mega_NpcManager__AFHBGJJCFLC(param_1,0);
+    return;
+  }
+  PAFIAMHINPA__OHJCJDGFMBA<PPHBKECPBIH>(local_28,param_1,DAT_1855ceed8);
+  lVar3 = Mega_GameBehaviour__LNNACCFOJNI(0);
+  if ((lVar3 != 0) && (plVar1 = *(longlong **)(lVar3 + 0x288), plVar1 != (longlong *)0x0)) {
+    cVar2 = (**(code **)(*plVar1 + 0x588))(plVar1,*(undefined8 *)(*plVar1 + 0x590));
+    if (cVar2 != '\0') {
+      lVar3 = Mega_GameBehaviour__LNNACCFOJNI(0);
+      if (((lVar3 == 0) || (*(longlong *)(lVar3 + 0x288) == 0)) ||
+         (lVar3 = *(longlong *)(*(longlong *)(lVar3 + 0x288) + 0x30), lVar3 == 0))
+      goto LAB_1811f11e8;
+      System_Collections_Generic_Dictionary<StyleSheetCache_SheetHandleKey,_object>__Clear
+                (lVar3,DAT_1855ceee0);
+    }
+    lVar3 = Mega_GameBehaviour__LNNACCFOJNI(0);
+    if ((lVar3 != 0) && (plVar1 = *(longlong **)(lVar3 + 0x1b0), plVar1 != (longlong *)0x0)) {
+      cVar2 = (**(code **)(*plVar1 + 0x3d8))(plVar1,*(undefined8 *)(*plVar1 + 0x3e0));
+      if (cVar2 == '\0') {
+LAB_1811f0fbe:
+        iVar5 = 0;
+        if ((char)uStack_f != '\0') {
+          do {
+            PAFIAMHINPA__EAOCAIEFAPB<PCMGOJPEIBK,_HLHOKBAPOKB>(local_38,param_1,iVar5,DAT_1855ceef0)
+            ;
+            lVar3 = MCKFAIEPAEH__DPMNBMEIPJG(local_30,0);
+            if ((lVar3 != 0) && (*(char *)(lVar3 + 0x80) == '\0')) {
+              lVar4 = Mega_GameBehaviour__LNNACCFOJNI(0);
+              if ((lVar4 == 0) ||
+                 (plVar1 = *(longlong **)(lVar4 + 0x198), plVar1 == (longlong *)0x0))
+              goto LAB_1811f11e8;
+              cVar2 = (**(code **)(*plVar1 + 0x268))(plVar1,*(undefined8 *)(*plVar1 + 0x270));
+              if (cVar2 == '\0') {
+                lVar4 = Mega_GameBehaviour__LNNACCFOJNI(0);
+                if ((lVar4 == 0) ||
+                   (plVar1 = *(longlong **)(lVar4 + 0x288), plVar1 == (longlong *)0x0))
+                goto LAB_1811f11e8;
+                cVar2 = (**(code **)(*plVar1 + 0x588))(plVar1,*(undefined8 *)(*plVar1 + 0x590));
+                if (cVar2 == '\0') {
+                  lVar4 = Mega_GameBehaviour__LNNACCFOJNI(0);
+                  if ((lVar4 == 0) ||
+                     (plVar1 = *(longlong **)(lVar4 + 0x1b0), plVar1 == (longlong *)0x0))
+                  goto LAB_1811f11e8;
+                  cVar2 = (**(code **)(*plVar1 + 0x3d8))(plVar1,*(undefined8 *)(*plVar1 + 0x3e0));
+                  if (cVar2 != '\0') {
+                    lVar4 = Mega_GameBehaviour__LNNACCFOJNI(0);
+                    if (((lVar4 == 0) ||
+                        (plVar1 = *(longlong **)(lVar4 + 0x1b0), plVar1 == (longlong *)0x0)) ||
+                       (lVar4 = (**(code **)(*plVar1 + 0x5c8))
+                                          (plVar1,*(undefined8 *)(*plVar1 + 0x5d0)), lVar4 == 0))
+                    goto LAB_1811f11e8;
+                    lVar4 = ItemStorage__OCFJLECFNOO(lVar4,local_38[0],0);
+                    if (lVar4 != 0) {
+                      if (*(longlong *)(lVar4 + 0x28) == 0) goto LAB_1811f11e8;
+                      ItemStorage__IDEMAOPBELC(*(longlong *)(lVar4 + 0x28),lVar4,lVar3,0,0,0);
+                    }
+                  }
+                }
+                else {
+                  lVar4 = Mega_GameBehaviour__LNNACCFOJNI(0);
+                  if ((lVar4 == 0) ||
+                     (plVar1 = *(longlong **)(lVar4 + 0x288), plVar1 == (longlong *)0x0))
+                  goto LAB_1811f11e8;
+                  (**(code **)(*plVar1 + 0x488))
+                            (plVar1,local_38[0],lVar3,*(undefined8 *)(*plVar1 + 0x490));
+                }
+              }
+              else {
+                lVar4 = Mega_GameBehaviour__LNNACCFOJNI(0);
+                if ((lVar4 == 0) ||
+                   (plVar1 = *(longlong **)(lVar4 + 0x198), plVar1 == (longlong *)0x0))
+                goto LAB_1811f11e8;
+                (**(code **)(*plVar1 + 0x2b8))
+                          (plVar1,local_38[0],lVar3,*(undefined8 *)(*plVar1 + 0x2c0));
+              }
+            }
+            iVar5 = iVar5 + 1;
+          } while (iVar5 < (int)(uStack_f & 0xff));
+        }
+        return;
+      }
+      lVar3 = Mega_GameBehaviour__LNNACCFOJNI(0);
+      if ((lVar3 != 0) && (plVar1 = *(longlong **)(lVar3 + 0x1b0), plVar1 != (longlong *)0x0)) {
+        lVar3 = (**(code **)(*plVar1 + 0x5c8))(plVar1,*(undefined8 *)(*plVar1 + 0x5d0));
+        if (lVar3 != 0) {
+          ItemStorage__KHIKNBGHFIF(lVar3,1,0);
+          goto LAB_1811f0fbe;
+        }
+      }
+    }
+  }
+LAB_1811f11e8:
+                    /* WARNING: Subroutine does not return */
+  FUN_18029cb10();
+}
+

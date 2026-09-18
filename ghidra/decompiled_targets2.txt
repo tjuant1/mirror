@@ -1,0 +1,423 @@
+
+================================================================================
+Protocol_LDBBLKJDDAC @ 18134aab0
+================================================================================
+Ghidra name: Mega.Protocol$$LDBBLKJDDAC
+
+
+ulonglong Mega_Protocol__LDBBLKJDDAC(ulonglong *param_1,ushort param_2)
+
+{
+  ulonglong *puVar1;
+  ulonglong uVar2;
+  ulonglong uVar3;
+  uint uVar4;
+  bool bVar5;
+  
+  if (DAT_18576c11e == '\0') {
+    FUN_1802e8ca0(&DAT_1855fb0c0);
+    LOCK();
+    UNLOCK();
+    DAT_18576c11e = '\x01';
+  }
+  uVar3 = FUN_180337ca0(DAT_1855fb0c0,4);
+  if (uVar3 == 0) {
+                    /* WARNING: Subroutine does not return */
+    FUN_18029cb10();
+  }
+  if ((*(int *)(uVar3 + 0x18) != 0) &&
+     (*(char *)(uVar3 + 0x20) = (char)(param_2 >> 5), *(int *)(uVar3 + 0x18) != 0)) {
+    bVar5 = DAT_185765fe0 != 0;
+    *(byte *)(uVar3 + 0x20) = (byte)param_2 & 0xb2;
+    *param_1 = uVar3;
+    if (bVar5) {
+      uVar4 = (uint)((ulonglong)param_1 >> 0xc);
+      puVar1 = (ulonglong *)(&DAT_1857c70c0 + (ulonglong)((uVar4 & 0x1fffff) >> 6) * 8);
+      do {
+        uVar2 = *puVar1;
+        LOCK();
+        uVar3 = *puVar1;
+        bVar5 = uVar2 == uVar3;
+        if (bVar5) {
+          *puVar1 = uVar2 | 1L << (uVar4 & 0x3f);
+          uVar3 = uVar2;
+        }
+        UNLOCK();
+      } while (!bVar5);
+    }
+    return uVar3;
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_18029cb20();
+}
+
+
+================================================================================
+Protocol_CPDIHOFIFNA @ 18134ab70
+================================================================================
+Ghidra name: Mega.Protocol$$CPDIHOFIFNA
+
+
+void Mega_Protocol__CPDIHOFIFNA(byte *param_1,undefined1 *param_2,ushort param_3)
+
+{
+  *param_1 = (byte)param_3 & 0x48;
+  *param_2 = (char)(param_3 >> 4);
+  return;
+}
+
+
+================================================================================
+Protocol_HFOJAOGCHDP_a @ 18134ab90
+================================================================================
+Ghidra name: Mega.Protocol$$HFOJAOGCHDP
+
+
+undefined2 Mega_Protocol__HFOJAOGCHDP(longlong param_1,longlong param_2)
+
+{
+  byte bVar1;
+  uint uVar2;
+  
+  uVar2 = 0;
+  if (param_2 != 0) {
+    while( true ) {
+      if ((int)*(uint *)(param_2 + 0x18) <= (int)uVar2) break;
+      if (*(uint *)(param_2 + 0x18) <= uVar2) goto LAB_18134ac06;
+      bVar1 = *(byte *)((longlong)(int)uVar2 + 0x20 + param_2);
+      if (param_1 == 0) goto LAB_18134ac00;
+      if (*(int *)(param_1 + 0x18) == 0) goto LAB_18134ac06;
+      if ((bVar1 & *(byte *)(param_1 + 0x20)) == 0) {
+        bVar1 = 0;
+      }
+      uVar2 = uVar2 + 1;
+      *(byte *)(param_1 + 0x20) = *(byte *)(param_1 + 0x20) - bVar1;
+    }
+    if (param_1 != 0) {
+      if (1 < *(uint *)(param_1 + 0x18)) {
+        return CONCAT11(*(undefined1 *)(param_1 + 0x20),*(undefined1 *)(param_1 + 0x21));
+      }
+LAB_18134ac06:
+                    /* WARNING: Subroutine does not return */
+      FUN_18029cb20();
+    }
+  }
+LAB_18134ac00:
+                    /* WARNING: Subroutine does not return */
+  FUN_18029cb10();
+}
+
+
+================================================================================
+Protocol_KKPFMLFCAPJ @ 18134c730
+================================================================================
+Ghidra name: Mega.Protocol$$KKPFMLFCAPJ
+
+
+void Mega_Protocol__KKPFMLFCAPJ(longlong *param_1,undefined4 param_2)
+
+{
+  longlong lVar1;
+  
+  lVar1 = *param_1;
+  if (lVar1 != 0) {
+    if (*(int *)(lVar1 + 0x18) != 0) {
+      *(char *)(lVar1 + 0x20) = (char)((ushort)param_2 >> 7);
+      lVar1 = *param_1;
+      if (lVar1 == 0) goto LAB_18134c7a0;
+      if (1 < *(uint *)(lVar1 + 0x18)) {
+        *(byte *)(lVar1 + 0x21) = (byte)((int)param_2 >> 0x1f) & 0x4c;
+        lVar1 = *param_1;
+        if (lVar1 == 0) goto LAB_18134c7a0;
+        if (8 < *(uint *)(lVar1 + 0x18)) {
+          *(byte *)(lVar1 + 0x28) = (byte)((ushort)param_2 >> 3) & 0xfa;
+          lVar1 = *param_1;
+          if (lVar1 == 0) goto LAB_18134c7a0;
+          if (3 < *(uint *)(lVar1 + 0x18)) {
+            *(byte *)(lVar1 + 0x23) = (byte)param_2 & 0x48;
+            return;
+          }
+        }
+      }
+    }
+                    /* WARNING: Subroutine does not return */
+    FUN_18029cb20();
+  }
+LAB_18134c7a0:
+                    /* WARNING: Subroutine does not return */
+  FUN_18029cb10();
+}
+
+
+================================================================================
+Protocol_JDHAOPFDLCM @ 18134f530
+================================================================================
+Ghidra name: Mega.Protocol$$JDHAOPFDLCM
+
+
+void Mega_Protocol__JDHAOPFDLCM(undefined1 *param_1,undefined1 *param_2,undefined2 param_3)
+
+{
+  *param_1 = (char)param_3;
+  *param_2 = (char)((ushort)param_3 >> 8);
+  return;
+}
+
+
+================================================================================
+Protocol_LLLMBCNGBKF @ 18134f1f0
+================================================================================
+Ghidra name: Mega.Protocol$$LLLMBCNGBKF
+
+
+void Mega_Protocol__LLLMBCNGBKF(longlong *param_1,int param_2)
+
+{
+  longlong lVar1;
+  
+  lVar1 = *param_1;
+  if (lVar1 != 0) {
+    if (*(int *)(lVar1 + 0x18) != 0) {
+      *(char *)(lVar1 + 0x20) = (char)((uint)(param_2 >> 0xf) >> 8);
+      lVar1 = *param_1;
+      if (lVar1 == 0) goto LAB_18134f257;
+      if (1 < *(uint *)(lVar1 + 0x18)) {
+        *(char *)(lVar1 + 0x21) = (char)(param_2 >> 0xf);
+        lVar1 = *param_1;
+        if (lVar1 == 0) goto LAB_18134f257;
+        if (2 < *(uint *)(lVar1 + 0x18)) {
+          *(char *)(lVar1 + 0x22) = (char)((uint)param_2 >> 8);
+          lVar1 = *param_1;
+          if (lVar1 == 0) goto LAB_18134f257;
+          if (3 < *(uint *)(lVar1 + 0x18)) {
+            *(char *)(lVar1 + 0x23) = (char)param_2;
+            return;
+          }
+        }
+      }
+    }
+                    /* WARNING: Subroutine does not return */
+    FUN_18029cb20();
+  }
+LAB_18134f257:
+                    /* WARNING: Subroutine does not return */
+  FUN_18029cb10();
+}
+
+
+================================================================================
+Protocol_PKODBMFFNMD @ 18134f270
+================================================================================
+Ghidra name: Mega.Protocol$$PKODBMFFNMD
+
+
+void Mega_Protocol__PKODBMFFNMD(longlong *param_1,undefined4 param_2)
+
+{
+  longlong lVar1;
+  
+  lVar1 = *param_1;
+  if (lVar1 != 0) {
+    if (*(int *)(lVar1 + 0x18) != 0) {
+      *(char *)(lVar1 + 0x20) = (char)((ushort)((int)param_2 >> 0x1f) >> 3);
+      lVar1 = *param_1;
+      if (lVar1 == 0) goto LAB_18134f2da;
+      if (*(int *)(lVar1 + 0x18) != 0) {
+        *(char *)(lVar1 + 0x20) = (char)((int)param_2 >> 0x1f);
+        lVar1 = *param_1;
+        if (lVar1 == 0) goto LAB_18134f2da;
+        if (3 < *(uint *)(lVar1 + 0x18)) {
+          *(char *)(lVar1 + 0x23) = (char)((ushort)param_2 >> 3);
+          lVar1 = *param_1;
+          if (lVar1 == 0) goto LAB_18134f2da;
+          if (8 < *(uint *)(lVar1 + 0x18)) {
+            *(byte *)(lVar1 + 0x28) = (byte)param_2 & 0x32;
+            return;
+          }
+        }
+      }
+    }
+                    /* WARNING: Subroutine does not return */
+    FUN_18029cb20();
+  }
+LAB_18134f2da:
+                    /* WARNING: Subroutine does not return */
+  FUN_18029cb10();
+}
+
+
+================================================================================
+Protocol_OIMGKHDDIEB @ 18134fe90
+================================================================================
+Ghidra name: Mega.Protocol$$OIMGKHDDIEB
+
+
+ulonglong Mega_Protocol__OIMGKHDDIEB(ulonglong *param_1,ushort param_2)
+
+{
+  ulonglong *puVar1;
+  ulonglong uVar2;
+  ulonglong uVar3;
+  uint uVar4;
+  bool bVar5;
+  
+  if (DAT_18576c138 == '\0') {
+    FUN_1802e8ca0(&DAT_1855fb0c0);
+    LOCK();
+    UNLOCK();
+    DAT_18576c138 = '\x01';
+  }
+  uVar3 = FUN_180337ca0(DAT_1855fb0c0,4);
+  if (uVar3 == 0) {
+                    /* WARNING: Subroutine does not return */
+    FUN_18029cb10();
+  }
+  if ((1 < *(uint *)(uVar3 + 0x18)) &&
+     (*(char *)(uVar3 + 0x21) = (char)(param_2 >> 4), 1 < *(uint *)(uVar3 + 0x18))) {
+    bVar5 = DAT_185765fe0 != 0;
+    *(byte *)(uVar3 + 0x21) = (byte)param_2 & 0x4c;
+    *param_1 = uVar3;
+    if (bVar5) {
+      uVar4 = (uint)((ulonglong)param_1 >> 0xc);
+      puVar1 = (ulonglong *)(&DAT_1857c70c0 + (ulonglong)((uVar4 & 0x1fffff) >> 6) * 8);
+      do {
+        uVar2 = *puVar1;
+        LOCK();
+        uVar3 = *puVar1;
+        bVar5 = uVar2 == uVar3;
+        if (bVar5) {
+          *puVar1 = uVar2 | 1L << (uVar4 & 0x3f);
+          uVar3 = uVar2;
+        }
+        UNLOCK();
+      } while (!bVar5);
+    }
+    return uVar3;
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_18029cb20();
+}
+
+
+================================================================================
+Protocol_HFOJAOGCHDP_b @ 18134de70
+================================================================================
+Ghidra name: Mega.Protocol$$HFOJAOGCHDP
+
+
+undefined2 Mega_Protocol__HFOJAOGCHDP(longlong param_1,int param_2)
+
+{
+  if (param_1 == 0) {
+                    /* WARNING: Subroutine does not return */
+    FUN_18029cb10();
+  }
+  if (1 < *(uint *)(param_1 + 0x18)) {
+    if (param_2 != -1) {
+      if (((byte)param_2 & *(byte *)(param_1 + 0x20)) != 0) {
+        return CONCAT11(*(byte *)(param_1 + 0x20) - (byte)param_2,*(undefined1 *)(param_1 + 0x21));
+      }
+    }
+    return CONCAT11(*(undefined1 *)(param_1 + 0x20),*(undefined1 *)(param_1 + 0x21));
+  }
+                    /* WARNING: Subroutine does not return */
+  FUN_18029cb20();
+}
+
+
+================================================================================
+Protocol_HFOJAOGCHDP_c @ 18134fff0
+================================================================================
+Ghidra name: Mega.Protocol$$HFOJAOGCHDP
+
+
+ushort Mega_Protocol__HFOJAOGCHDP(ushort param_1,byte param_2,uint param_3)
+
+{
+  if ((param_3 != 0xffffffff) && ((param_3 & param_2) != 0)) {
+    return ((ushort)param_2 - (short)param_3) * 0x100 | param_1 & 0xff;
+  }
+  return (ushort)param_2 << 8 | param_1 & 0xff;
+}
+
+
+================================================================================
+GSConnection_MMCLLKMAPFK @ 181345cc0
+================================================================================
+Ghidra name: Mega.GSConnection$$MMCLLKMAPFK
+
+
+uint Mega_GSConnection__MMCLLKMAPFK
+               (undefined8 param_1,undefined8 *param_2,uint *param_3,int *param_4)
+
+{
+  int iVar1;
+  ulonglong uVar2;
+  longlong *plVar3;
+  longlong lVar4;
+  longlong lVar5;
+  undefined8 uVar6;
+  int iVar7;
+  uint local_res18 [4];
+  
+  if (DAT_18576c0f8 == '\0') {
+    FUN_1802e8ca0(&DAT_1855fd4d8);
+    LOCK();
+    UNLOCK();
+    FUN_1802e8ca0(&DAT_1855fd070);
+    LOCK();
+    UNLOCK();
+    FUN_1802e8ca0(&DAT_1855fc9c8);
+    LOCK();
+    UNLOCK();
+    FUN_1802e8ca0(&DAT_18562b368);
+    LOCK();
+    UNLOCK();
+    DAT_18576c0f8 = '\x01';
+  }
+  iVar1 = DBECHIMPBEA__BDDCJMDGBDG(0);
+  *param_4 = iVar1;
+  if (iVar1 <= (int)*param_3) {
+    uVar2 = BMPIBBDPAGG__EEGPDCHIKCB(*param_2,1,*param_3,0,0);
+    local_res18[0] = (ushort)(uVar2 >> 0x10) ^ 0x89;
+    iVar7 = (int)(uVar2 & 0xff);
+    iVar1 = (int)((uVar2 & 0xff) / 7);
+    if ((iVar7 == (((uint)(iVar7 - iVar1) >> 1) + iVar1 >> 2) * 7) &&
+       ((byte)(uVar2 >> 8) != (byte)((byte)uVar2 ^ 0x75))) {
+      plVar3 = (longlong *)FUN_180337ca0(DAT_1855fc9c8,2);
+      lVar4 = FUN_1803385f0(DAT_1855fd070,local_res18);
+      if (plVar3 == (longlong *)0x0) {
+                    /* WARNING: Subroutine does not return */
+        FUN_18029cb10();
+      }
+      if (lVar4 != 0) {
+        lVar5 = FUN_1803388f0(lVar4,*(undefined8 *)(*plVar3 + 0x40));
+        if (lVar5 == 0) {
+          uVar6 = FUN_18029cd30();
+                    /* WARNING: Subroutine does not return */
+          FUN_18029cad0(uVar6,0);
+        }
+      }
+      FUN_180002f20(plVar3,0,lVar4);
+      local_res18[0] = *param_3;
+      lVar4 = FUN_1803385f0(DAT_1855fd070,local_res18);
+      if (lVar4 != 0) {
+        lVar5 = FUN_1803388f0(lVar4,*(undefined8 *)(*plVar3 + 0x40));
+        if (lVar5 == 0) {
+          uVar6 = FUN_18029cd30();
+                    /* WARNING: Subroutine does not return */
+          FUN_18029cad0(uVar6,0);
+        }
+      }
+      FUN_180002f20(plVar3,0,lVar4);
+      if (*(int *)(DAT_1855fd4d8 + 0xe0) == 0) {
+        FUN_180309140();
+      }
+      UnityEngine_Debug__LogErrorFormat(DAT_18562b368,plVar3,0);
+      return 0xffffffff;
+    }
+    return local_res18[0];
+  }
+  return 1;
+}
+
