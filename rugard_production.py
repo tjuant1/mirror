@@ -33,7 +33,7 @@ NPC_NAME_FILTER = "Rugard"
 MOVE_DISTANCE = 2.0
 WORLD_HEIGHT_DEFAULT = 1.7
 CLICK_RETRY_INTERVAL = 0.3
-CLICK_RETRY_TIMEOUT = 30.0
+CLICK_RETRY_TIMEOUT = 30.0  # generoso pra contas longe (caminhada real leva tempo proporcional a distancia); sai na hora se confirmar antes, entao nao atrasa quem ja esta perto
 
 CONFIRM_TEMPLATE_PATH = "ui_templates/confirmation.png"
 CONFIRM_MATCH_THRESHOLD = 0.55
@@ -206,6 +206,22 @@ def press_enter():
     win32api.keybd_event(win32con.VK_RETURN, 0, win32con.KEYEVENTF_KEYUP, 0)
 
 
+def focus_window(hwnd):
+    """Traz a janela da conta pra frente antes de mandar teclado/mouse.
+    keybd_event e um evento GLOBAL do Windows -- ele vai pra janela que
+    estiver com foco no sistema no instante do envio, entao se outra conta
+    clicar na janela dela nesse meio tempo, o foco muda e o Enter vai
+    parar na janela errada. Best-effort: SetForegroundWindow pode falhar
+    silenciosamente por restricoes do Windows, mas o clique fisico logo
+    antes (mouse_event) normalmente já concede o foco de qualquer forma."""
+    try:
+        if win32gui.IsIconic(hwnd):
+            win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
+        win32gui.SetForegroundWindow(hwnd)
+    except Exception:
+        pass
+
+
 def load_confirm_template(path):
     img = cv2.imread(path, cv2.IMREAD_UNCHANGED)
     if img is None:
@@ -266,6 +282,10 @@ class AccountWorker(threading.Thread):
                 f"(template capturado nessa resolucao) pode falhar nesta conta.",
                 flush=True,
             )
+        # True assim que o PROPRIO Body.Awake desta conta disparar pro
+        # Rugard -- ou seja, o npc realmente renderizou no cliente dela
+        # (independente de quem foi a conta que avisou a posicao primeiro)
+        self.locally_visible = False
         print(f"[{self.name}] anexado (pid={self.pid})", flush=True)
 
     def on_message(self, message, data):
@@ -274,6 +294,9 @@ class AccountWorker(threading.Thread):
             return
         payload = message["payload"]
         if payload.get("event") == "found" and payload.get("cx") is not None:
+            if not self.locally_visible:
+                self.locally_visible = True
+                print(f"[{self.name}] Rugard renderizado nesta conta.", flush=True)
             with shared_lock:
                 if not shared_coord["set"]:
                     shared_coord["set"] = True
@@ -293,8 +316,20 @@ class AccountWorker(threading.Thread):
 
         world_x, world_z = cx + 0.5, cy + 0.5
         deadline = time.time() + CLICK_RETRY_TIMEOUT
+
+        # so vale a pena tentar clicar quando o Rugard JA renderizou no
+        # cliente desta conta (proprio Body.Awake). Antes disso a projecao
+        # da camera pode dizer "na tela" so pela matematica da posicao do
+        # mundo, mesmo com o npc ainda nao carregado -- clicar nesse
+        # momento so gera tentativas inuteis que prendem o click_lock e
+        # atrasam contas que ja estao prontas de verdade.
+        if not self.locally_visible:
+            print(f"[{self.name}] Rugard ainda nao renderizou aqui -- aguardando (personagem a caminho)...", flush=True)
+            while not self.locally_visible and time.time() < deadline:
+                time.sleep(0.15)
+
         clicked = False
-        while time.time() < deadline and not clicked:
+        while self.locally_visible and time.time() < deadline and not clicked:
             proj = self.script.exports_sync.get_screen_point_for_world(world_x, WORLD_HEIGHT_DEFAULT, world_z)
             if "error" not in proj:
                 sx, sy, sz = proj["screenPos"]
@@ -306,15 +341,21 @@ class AccountWorker(threading.Thread):
                     win_x = region["left"] + int(round(sx * scale_x))
                     win_y = region["top"] + int(round((screen_h - sy) * scale_y))
                     print(f"[{self.name}] clicando em ({win_x},{win_y})...", flush=True)
+                    # clique + confirmacao + enter formam uma secao critica:
+                    # se outra conta clicar na janela dela no meio desse
+                    # intervalo, ela rouba o foco global do Windows e o
+                    # Enter desta conta vai parar na janela errada.
                     with click_lock:
+                        focus_window(self.hwnd)
                         double_click_at(win_x, win_y)
-                    time.sleep(0.3)
-                    if wait_for_confirmation(self.sct, region, self.confirm_template, self.name):
-                        press_enter()
-                        print(f"[{self.name}] *** CONFIRMADO, Enter enviado ***", flush=True)
-                        clicked = True
-                    else:
-                        print(f"[{self.name}] clique nao confirmado, tentando de novo...", flush=True)
+                        time.sleep(0.3)
+                        if wait_for_confirmation(self.sct, region, self.confirm_template, self.name):
+                            focus_window(self.hwnd)
+                            press_enter()
+                            print(f"[{self.name}] *** CONFIRMADO, Enter enviado ***", flush=True)
+                            clicked = True
+                        else:
+                            print(f"[{self.name}] clique nao confirmado, tentando de novo...", flush=True)
                 else:
                     print(f"[{self.name}] ainda fora da tela, tentando de novo em {CLICK_RETRY_INTERVAL}s...", flush=True)
             else:
@@ -322,7 +363,9 @@ class AccountWorker(threading.Thread):
             if not clicked:
                 time.sleep(CLICK_RETRY_INTERVAL)
 
-        if not clicked:
+        if not clicked and not self.locally_visible:
+            print(f"[{self.name}] !!! Rugard nunca renderizou nesta conta dentro do tempo limite (distancia grande demais?)", flush=True)
+        elif not clicked:
             print(f"[{self.name}] !!! nao conseguiu confirmar dentro do tempo limite", flush=True)
         self.session.detach()
 

@@ -1,0 +1,1149 @@
+[
+ {
+  "kind": "opcode",
+  "t": 178,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 199,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 609,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 803,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 1228,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 2277,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 3166,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 3318,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 4152,
+  "opcode": "C1:0F",
+  "cls": "Protocol",
+  "method": "JDOFKCOFADN"
+ },
+ {
+  "kind": "opcode",
+  "t": 4223,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 4327,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 4368,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 4680,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 4986,
+  "opcode": "C1:0E",
+  "cls": "Protocol",
+  "method": "LOJMGCEMDCP"
+ },
+ {
+  "kind": "awake",
+  "t": 5304,
+  "name": "Christine the Merchant",
+  "index": 80
+ },
+ {
+  "kind": "opcode",
+  "t": 5432,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 6481,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 6718,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 7160,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 7371,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 7544,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 7613,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 8427,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 8475,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 8579,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 8628,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 9059,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 10074,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "awake",
+  "t": 10308,
+  "name": "Jerint the Assistant",
+  "index": 81
+ },
+ {
+  "kind": "opcode",
+  "t": 10323,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 10532,
+  "opcode": "C1:01",
+  "cls": "Chat",
+  "method": "IGHIAIGFCEP"
+ },
+ {
+  "kind": "opcode",
+  "t": 10545,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 10671,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 10894,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 11026,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 11311,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 11497,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 11497,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 11614,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 11733,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 11963,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 12005,
+  "opcode": "C1:F3:E4",
+  "cls": "Chat",
+  "method": "CHPMLAKAKKB"
+ },
+ {
+  "kind": "opcode",
+  "t": 12776,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 13110,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 13199,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 13825,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "awake",
+  "t": 14310,
+  "name": "Archangel's Spirit",
+  "index": 77
+ },
+ {
+  "kind": "opcode",
+  "t": 14318,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 14992,
+  "opcode": "C1:0E",
+  "cls": "Protocol",
+  "method": "LOJMGCEMDCP"
+ },
+ {
+  "kind": "opcode",
+  "t": 15583,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 15604,
+  "opcode": "C1:F3:E4",
+  "cls": "Chat",
+  "method": "CHPMLAKAKKB"
+ },
+ {
+  "kind": "opcode",
+  "t": 15916,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 16000,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 16403,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "awake",
+  "t": 17305,
+  "name": "Charon",
+  "index": 78
+ },
+ {
+  "kind": "opcode",
+  "t": 17453,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 18265,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 18473,
+  "opcode": "C1:F3:E4",
+  "cls": "Chat",
+  "method": "CHPMLAKAKKB"
+ },
+ {
+  "kind": "opcode",
+  "t": 18501,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 19050,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 19112,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 19175,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 20128,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "awake",
+  "t": 20313,
+  "name": "Priest James",
+  "index": 82
+ },
+ {
+  "kind": "opcode",
+  "t": 20365,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 20460,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 20607,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "awake",
+  "t": 21309,
+  "name": "Safety Guardian",
+  "index": 83
+ },
+ {
+  "kind": "opcode",
+  "t": 21330,
+  "opcode": "C1:F3:E4",
+  "cls": "Chat",
+  "method": "CHPMLAKAKKB"
+ },
+ {
+  "kind": "opcode",
+  "t": 21656,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 22705,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 22705,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 23011,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 23157,
+  "opcode": "C1:0F",
+  "cls": "Protocol",
+  "method": "JDOFKCOFADN"
+ },
+ {
+  "kind": "opcode",
+  "t": 23178,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 23753,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "awake",
+  "t": 24312,
+  "name": "Illusion Sorcerer Elder",
+  "index": 0
+ },
+ {
+  "kind": "awake",
+  "t": 24312,
+  "name": "Safety Guardian",
+  "index": 84
+ },
+ {
+  "kind": "opcode",
+  "t": 24449,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 24769,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 24797,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 24984,
+  "opcode": "C1:0E",
+  "cls": "Protocol",
+  "method": "LOJMGCEMDCP"
+ },
+ {
+  "kind": "opcode",
+  "t": 25144,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 25233,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 25686,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 25687,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 25845,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "awake",
+  "t": 26309,
+  "name": "Jerint the Assistant",
+  "index": 81
+ },
+ {
+  "kind": "opcode",
+  "t": 26846,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 26903,
+  "opcode": "C1:9C",
+  "cls": "Protocol",
+  "method": "IOAJHPMHIHJ"
+ },
+ {
+  "kind": "opcode",
+  "t": 26910,
+  "opcode": "C1:9C",
+  "cls": "Protocol",
+  "method": "IOAJHPMHIHJ"
+ },
+ {
+  "kind": "opcode",
+  "t": 26910,
+  "opcode": "C1:9C",
+  "cls": "Protocol",
+  "method": "IOAJHPMHIHJ"
+ },
+ {
+  "kind": "opcode",
+  "t": 26957,
+  "opcode": "C1:9C",
+  "cls": "Protocol",
+  "method": "IOAJHPMHIHJ"
+ },
+ {
+  "kind": "opcode",
+  "t": 26957,
+  "opcode": "C1:9C",
+  "cls": "Protocol",
+  "method": "IOAJHPMHIHJ"
+ },
+ {
+  "kind": "opcode",
+  "t": 26957,
+  "opcode": "C1:9C",
+  "cls": "Protocol",
+  "method": "IOAJHPMHIHJ"
+ },
+ {
+  "kind": "opcode",
+  "t": 26957,
+  "opcode": "C1:9C",
+  "cls": "Protocol",
+  "method": "IOAJHPMHIHJ"
+ },
+ {
+  "kind": "opcode",
+  "t": 26957,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 27306,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 27952,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 28298,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "awake",
+  "t": 28312,
+  "name": "Priest James",
+  "index": 82
+ },
+ {
+  "kind": "opcode",
+  "t": 28702,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 29001,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 29328,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 29612,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 30050,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 30244,
+  "opcode": "C1:F3:E4",
+  "cls": "Chat",
+  "method": "CHPMLAKAKKB"
+ },
+ {
+  "kind": "opcode",
+  "t": 30342,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 30543,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 31092,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 32162,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 32238,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 32349,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 32586,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 33003,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 33205,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 33662,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 33718,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 34254,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "awake",
+  "t": 34315,
+  "name": "Christine the Merchant",
+  "index": 80
+ },
+ {
+  "kind": "opcode",
+  "t": 34956,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 34990,
+  "opcode": "C1:0E",
+  "cls": "Protocol",
+  "method": "LOJMGCEMDCP"
+ },
+ {
+  "kind": "opcode",
+  "t": 35025,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 35302,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "awake",
+  "t": 36294,
+  "name": "Archangel's Spirit",
+  "index": 77
+ },
+ {
+  "kind": "opcode",
+  "t": 36345,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 36386,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 36408,
+  "opcode": "C1:F3:E4",
+  "cls": "Chat",
+  "method": "CHPMLAKAKKB"
+ },
+ {
+  "kind": "opcode",
+  "t": 36644,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 36970,
+  "opcode": "C1:F3:E4",
+  "cls": "Chat",
+  "method": "CHPMLAKAKKB"
+ },
+ {
+  "kind": "opcode",
+  "t": 37144,
+  "opcode": "C1:0F",
+  "cls": "Protocol",
+  "method": "JDOFKCOFADN"
+ },
+ {
+  "kind": "opcode",
+  "t": 37228,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 37394,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 37422,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 38124,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 38193,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 38458,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 39000,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 39153,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 39508,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 40181,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "awake",
+  "t": 40298,
+  "name": "Charon",
+  "index": 78
+ },
+ {
+  "kind": "opcode",
+  "t": 40445,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 40549,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 40876,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "awake",
+  "t": 41298,
+  "name": "Priest James",
+  "index": 82
+ },
+ {
+  "kind": "opcode",
+  "t": 41599,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 41716,
+  "opcode": "C1:F3:E4",
+  "cls": "Chat",
+  "method": "CHPMLAKAKKB"
+ },
+ {
+  "kind": "opcode",
+  "t": 42223,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 42411,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 42648,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 42675,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "awake",
+  "t": 43298,
+  "name": "Illusion Sorcerer Elder",
+  "index": 0
+ },
+ {
+  "kind": "opcode",
+  "t": 43585,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 43711,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 43759,
+  "opcode": "C2:30",
+  "cls": "NpcManager",
+  "method": "EOFNAPOMKIA"
+ },
+ {
+  "kind": "opcode",
+  "t": 43759,
+  "opcode": "C2:30",
+  "cls": "NpcManager",
+  "method": "NPEHICHNLHD"
+ },
+ {
+  "kind": "opcode",
+  "t": 43759,
+  "opcode": "C2:31",
+  "cls": "NpcManager",
+  "method": "GMICBHANFGP"
+ },
+ {
+  "kind": "opcode",
+  "t": 43760,
+  "opcode": "C1:31",
+  "cls": "NpcManager",
+  "method": "ILJEOFLKBJM"
+ },
+ {
+  "kind": "opcode",
+  "t": 43786,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 44288,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ },
+ {
+  "kind": "opcode",
+  "t": 44517,
+  "opcode": "C1:0D",
+  "cls": "Chat",
+  "method": "BMLFLDPDNDB"
+ },
+ {
+  "kind": "opcode",
+  "t": 44759,
+  "opcode": "C3:F1:FE",
+  "cls": "Protocol",
+  "method": "JPAEBKJCNID"
+ },
+ {
+  "kind": "opcode",
+  "t": 44822,
+  "opcode": "C1:F3:E4",
+  "cls": "Chat",
+  "method": "CHPMLAKAKKB"
+ },
+ {
+  "kind": "opcode",
+  "t": 44989,
+  "opcode": "C1:0E",
+  "cls": "Protocol",
+  "method": "LOJMGCEMDCP"
+ },
+ {
+  "kind": "opcode",
+  "t": 44997,
+  "opcode": "C1:D7:[PROTOCOL_CODE1]",
+  "cls": "Unit",
+  "method": "MMONANLPHHC"
+ }
+]

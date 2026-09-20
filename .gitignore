@@ -9,3 +9,8 @@ ghidra/*.log
 
 # Il2CppDumper tool + raw dumps (huge, regenerable by re-running the tool)
 il2cppdumper/
+
+# PyInstaller build output (regenerable via `pyinstaller ... rugard_gui.py`)
+dist/
+build_tmp/
+confirm_debug/
