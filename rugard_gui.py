@@ -432,9 +432,9 @@ class AccountWorker(threading.Thread):
         cx, cy = self.shared["cx"], self.shared["cy"]
         self.tlog("iniciando movimento")
         self.log(f"movendo para ({cx},{cy})...")
-        move_result = self.script.exports_sync.move_to(cx, cy, MOVE_DISTANCE)
+        self.walk_toward(cx, cy)
         self.tlog("movimento disparado")
-        self.log(f"resultado do movimento: {move_result}")
+        last_walk = time.time()
 
         world_x, world_z = cx + 0.5, cy + 0.5
         deadline = time.time() + CLICK_RETRY_TIMEOUT
@@ -466,6 +466,12 @@ class AccountWorker(threading.Thread):
             if local_pos and prev_local:
                 moved = ((local_pos[0] - prev_local[0]) ** 2 + (local_pos[2] - prev_local[2]) ** 2) ** 0.5
             prev_local = local_pos
+            # parado e ainda longe do NPC: o comando de andar acabou/falhou -> reemite
+            if (moved is not None and moved < 0.05 and time.time() - last_walk > 1.5):
+                npc = self.script.exports_sync.get_rugard_pos()
+                if local_pos and npc and ((local_pos[0] - npc[0]) ** 2 + (local_pos[2] - npc[2]) ** 2) ** 0.5 > 2.5:
+                    self.walk_toward(cx, cy)
+                last_walk = time.time()
             # clique + confirmacao + enter formam uma secao critica:
             # se outra conta clicar na janela dela no meio desse
             # intervalo, ela rouba o foco global do Windows e o
@@ -546,6 +552,24 @@ class AccountWorker(threading.Thread):
             self.log("!!! nao conseguiu confirmar dentro do tempo limite")
 
         self._safe_detach()
+
+    def walk_toward(self, cx, cy):
+        """Manda o personagem andar ate o NPC. O tile do proprio NPC costuma ser ocupado/nao andavel:
+        o jogo devolve result=1 e o personagem NAO anda (visto ao vivo). Entao tenta o tile do NPC e,
+        se falhar, os vizinhos (mais perto do NPC primeiro) ate um retornar 0 (comando enfileirado)."""
+        local = self.script.exports_sync.get_local_pos()
+        lx, lz = (local[0], local[2]) if local else (cx, cy)
+        cands = [(cx, cy)]
+        ring = [(cx + dx, cy + dy) for dx in range(-3, 4) for dy in range(-3, 4) if (dx, dy) != (0, 0)]
+        ring.sort(key=lambda t: ((t[0] - cx) ** 2 + (t[1] - cy) ** 2, (t[0] - lx) ** 2 + (t[1] - lz) ** 2))
+        cands += ring
+        for tx, ty in cands:
+            res = self.script.exports_sync.move_to(tx, ty, MOVE_DISTANCE)
+            if res.get("result") == 0:
+                self.log(f"andando para ({tx},{ty}) (NPC em ({cx},{cy}))")
+                return True
+        self.log(f"!!! nenhum tile perto de ({cx},{cy}) aceitou o comando de andar -- so os cliques vao aproximar")
+        return False
 
     def _wait_for_confirmation(self, region, timeout=CONFIRM_TIMEOUT):
         deadline = time.time() + timeout
