@@ -14,3 +14,8 @@ il2cppdumper/
 dist/
 build_tmp/
 confirm_debug/
+
+# gerados em runtime
+rva_cache.json
+log_*.txt
+tools/*.log

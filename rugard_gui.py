@@ -7,7 +7,7 @@ Fluxo:
      a janela aberta pra revisar o log) e "Fechar" (encerra tudo).
 
 A logica central (deteccao via Body.Awake, movimento via
-LocalCharacterBody.KODIBLNBDKN, clique via Camera.WorldToScreenPoint,
+LocalCharacterBody (MoveTo), clique via Camera.WorldToScreenPoint,
 confirmacao via template matching) e identica ao rugard_production.py
 ja validado em producao -- so foi encaixada numa interface grafica e
 num design que aceita parar de forma limpa a qualquer momento.
@@ -25,10 +25,23 @@ import cv2
 import numpy as np
 import mss
 import frida
+import il2cpp_resolve
 import win32api
 import win32con
 import win32gui
 import win32process
+import ctypes
+import traceback
+
+# sem isso, com escala de tela do Windows (125%/150%) as coordenadas de
+# janela/clique/captura ficam em espacos diferentes e o clique erra o alvo
+try:
+    ctypes.windll.shcore.SetProcessDpiAwareness(2)
+except Exception:
+    try:
+        ctypes.windll.user32.SetProcessDPIAware()
+    except Exception:
+        pass
 
 # --- caminho base: funciona tanto rodando como script quanto como .exe
 # empacotado (o .exe espera a pasta ui_templates/ ao lado dele) ---
@@ -50,18 +63,14 @@ CLICK_RETRY_TIMEOUT = 90.0  # generoso pra contas longe; sai na hora se confirma
 
 CONFIRM_TEMPLATE_PATH = os.path.join(BASE_DIR, "ui_templates", "confirmation.png")
 CONFIRM_MATCH_THRESHOLD = 0.55
-CONFIRM_TIMEOUT = 1.0
+CONFIRM_TIMEOUT = 0.45  # dialogo costuma aparecer ~0.22s apos o clique
+CLICK_MAX_DIST = 10.0  # alcance real fica entre ~4.4 e ~9 tiles; acima disso nem clica (so segura o lock)
 
-AWAKE_RVA = 0xD2DF30
-GET_LOCAL_BODY_RVA = 0x1233EE0
-MOVE_TO_RVA = 0xD661F0
-COORD_CTOR_RVA = 0x3B8590
-CAMERA_GET_MAIN_RVA = 0x464D920
-CAMERA_W2S_INJECTED_RVA = 0x464EB90
-SCREEN_GET_WIDTH_RVA = 0x46597C0
-SCREEN_GET_HEIGHT_RVA = 0x4659810
+# Enderecos NAO sao mais fixos: il2cpp_resolve.resolve_all() acha tudo em runtime por
+# nome de classe/assinatura (ver il2cpp_resolve.py) e so calibra uma vez por build.
+# Offsets de campo Body (Index/Name/TargetCoordinates/Position) tambem vem do runtime.
 
-JS = r"""
+JS_TEMPLATE = r"""
 var gameMod = Process.getModuleByName("GameAssembly.dll");
 var gameBase = gameMod.base;
 
@@ -72,13 +81,13 @@ var il2cpp_class_from_name = new NativeFunction(gameMod.getExportByName("il2cpp_
 var il2cpp_object_new = new NativeFunction(gameMod.getExportByName("il2cpp_object_new"), "pointer", ["pointer"]);
 var il2cpp_image_get_name = new NativeFunction(gameMod.getExportByName("il2cpp_image_get_name"), "pointer", ["pointer"]);
 
-var getLocalBody = new NativeFunction(gameBase.add(""" + hex(GET_LOCAL_BODY_RVA) + r"""), "pointer", []);
-var coordCtor = new NativeFunction(gameBase.add(""" + hex(COORD_CTOR_RVA) + r"""), "void", ["pointer", "int", "int"]);
-var moveToFn = new NativeFunction(gameBase.add(""" + hex(MOVE_TO_RVA) + r"""), "uint8", ["pointer", "pointer", "float", "pointer", "uint8", "uint8"]);
-var getMain = new NativeFunction(gameBase.add(""" + hex(CAMERA_GET_MAIN_RVA) + r"""), "pointer", []);
-var w2sInjected = new NativeFunction(gameBase.add(""" + hex(CAMERA_W2S_INJECTED_RVA) + r"""), "void", ["pointer", "pointer", "int", "pointer"]);
-var getScreenWidth = new NativeFunction(gameBase.add(""" + hex(SCREEN_GET_WIDTH_RVA) + r"""), "int", []);
-var getScreenHeight = new NativeFunction(gameBase.add(""" + hex(SCREEN_GET_HEIGHT_RVA) + r"""), "int", []);
+var getLocalBody = new NativeFunction(gameBase.add(@@GET_LOCAL_BODY@@), "pointer", []);
+var coordCtor = new NativeFunction(gameBase.add(@@COORD_CTOR@@), "void", ["pointer", "int", "int"]);
+var moveToFn = new NativeFunction(gameBase.add(@@MOVE_TO@@), "uint8", ["pointer", "pointer", "float", "pointer", "uint8", "uint8"]);
+var getMain = new NativeFunction(gameBase.add(@@CAMERA_GET_MAIN@@), "pointer", []);
+var w2sInjected = new NativeFunction(gameBase.add(@@CAMERA_W2S_INJECTED@@), "void", ["pointer", "pointer", "int", "pointer"]);
+var getScreenWidth = new NativeFunction(gameBase.add(@@SCREEN_W@@), "int", []);
+var getScreenHeight = new NativeFunction(gameBase.add(@@SCREEN_H@@), "int", []);
 
 function readIl2CppString(ptr) {
     try {
@@ -113,14 +122,25 @@ var rugardBody = null;
 function readBodyPos() {
     if (rugardBody === null) return null;
     try {
-        var p = rugardBody.add(0x120);
+        var p = rugardBody.add(@@OFF_Position@@);
         return [p.readFloat(), p.add(4).readFloat(), p.add(8).readFloat()];
     } catch (e) {
         return null;
     }
 }
 
-var awakeAddr = gameBase.add(""" + hex(AWAKE_RVA) + r""");
+function readLocalPos() {
+    try {
+        var body = getLocalBody();
+        if (body.isNull()) return null;
+        var p = body.add(@@OFF_Position@@);
+        return [p.readFloat(), p.add(4).readFloat(), p.add(8).readFloat()];
+    } catch (e) {
+        return null;
+    }
+}
+
+var awakeAddr = gameBase.add(@@AWAKE@@);
 
 Interceptor.attach(awakeAddr, {
     onEnter: function (args) {
@@ -130,16 +150,16 @@ Interceptor.attach(awakeAddr, {
         var poll = function () {
             attempts++;
             try {
-                var index = bodyPtr.add(0x20).readS32();
-                if (index >= """ + str(INDEX_MAX) + r""") return;
-                var namePtr = bodyPtr.add(0x28).readPointer();
+                var index = bodyPtr.add(@@OFF_Index@@).readS32();
+                if (index >= @@INDEX_MAX@@) return;
+                var namePtr = bodyPtr.add(@@OFF_Name@@).readPointer();
                 var name = readIl2CppString(namePtr);
                 if (name === null) {
                     if (attempts < maxAttempts) setTimeout(poll, 30);
                     return;
                 }
-                if (name.indexOf(""" + json.dumps(NPC_NAME_FILTER) + r""") >= 0) {
-                    var coordPtr = bodyPtr.add(0x70).readPointer();
+                if (name.indexOf(@@NPC_NAME@@) >= 0) {
+                    var coordPtr = bodyPtr.add(@@OFF_TargetCoordinates@@).readPointer();
                     var cx = coordPtr.isNull() ? null : coordPtr.add(0x10).readS32();
                     var cy = coordPtr.isNull() ? null : coordPtr.add(0x14).readS32();
                     rugardBody = bodyPtr;
@@ -165,6 +185,10 @@ function getCoordClass() {
 }
 
 rpc.exports = {
+    setMoveTo: function (rva) {
+        moveToFn = new NativeFunction(gameBase.add(ptr(rva)), "uint8", ["pointer", "pointer", "float", "pointer", "uint8", "uint8"]);
+        return true;
+    },
     prewarm: function () {
         var c = getCoordClass();
         return { ok: !c.isNull() };
@@ -182,6 +206,9 @@ rpc.exports = {
     getRugardPos: function () {
         return readBodyPos();
     },
+    getLocalPos: function () {
+        return readLocalPos();
+    },
     getScreenPointForWorld: function (wx, wy, wz) {
         var camera = getMain();
         if (camera.isNull()) return { error: "camera.main is null" };
@@ -196,6 +223,16 @@ rpc.exports = {
 };
 send({ event: "ready" });
 """
+
+def build_js(r):
+    js = JS_TEMPLATE
+    for k, v in r["rva"].items():
+        js = js.replace("@@%s@@" % k, v)
+    for k, v in r["offsets"].items():
+        js = js.replace("@@OFF_%s@@" % k, hex(v))
+    return (js.replace("@@INDEX_MAX@@", str(INDEX_MAX))
+              .replace("@@NPC_NAME@@", json.dumps(NPC_NAME_FILTER)))
+
 
 # so uma conta usa o mouse fisico por vez -- evita que 2 contas clicando
 # quase ao mesmo tempo "roubem" o cursor uma da outra no meio do clique
@@ -291,13 +328,15 @@ class AccountWorker(threading.Thread):
     """Uma thread por conta. Reporta tudo via log_fn (thread-safe) em vez
     de print(), e para de forma limpa assim que stop_event for setado."""
 
-    def __init__(self, name, confirm_template, shared_state, log_fn, stop_event):
+    def __init__(self, name, confirm_template, shared_state, log_fn, stop_event, primary=True):
         super().__init__(daemon=True)
         self.name = name
         self.confirm_template = confirm_template
         self.shared = shared_state
         self.log = lambda msg: log_fn(self.name, msg)
         self.stop_event = stop_event
+        self.primary = primary
+        self.resolved = None
         self.session = None
         self.script = None
         # True assim que o PROPRIO Body.Awake desta conta disparar pro
@@ -312,7 +351,9 @@ class AccountWorker(threading.Thread):
         _, self.pid = win32process.GetWindowThreadProcessId(self.hwnd)
         self.sct = mss.mss()
         self.session = frida.attach(self.pid)
-        self.script = self.session.create_script(JS)
+        # sem calibrar aqui: o hook do Body.Awake sobe ja, a calibracao do movimento vem depois (_run)
+        self.resolved = il2cpp_resolve.resolve_all(self.session, self.log, allow_calibrate=False)
+        self.script = self.session.create_script(build_js(self.resolved))
         self.script.on("message", self.on_message)
         self.script.load()
         try:
@@ -359,10 +400,26 @@ class AccountWorker(threading.Thread):
 
     def run(self):
         try:
+            self._run()
+        except Exception:
+            self.log("!!! ERRO INESPERADO na conta:\n" + traceback.format_exc())
+            self._safe_detach()
+
+    def _run(self):
+        try:
             self.attach()
         except Exception as e:
             self.log(f"!!! FALHA ao anexar: {e}")
+            if self.primary:
+                self.shared["move_ready"].set()  # nao trava as outras contas
             return
+
+        try:
+            r = il2cpp_resolve.ensure_move(self.session, self.resolved, self.log,
+                                           primary=self.primary, ready=self.shared["move_ready"])
+            self.script.exports_sync.set_move_to(r["rva"]["MOVE_TO"])
+        except Exception:
+            self.log("!!! erro calibrando movimento:" + chr(10) + traceback.format_exc())
 
         while not self.shared["event"].wait(0.2) and not self.stop_event.is_set():
             pass
@@ -397,41 +454,76 @@ class AccountWorker(threading.Thread):
 
         clicked = False
         attempt = 0
+        prev_local = None
         while self.locally_visible and time.time() < deadline and not clicked and not self.stop_event.is_set():
-            # posicao REAL do npc neste cliente (Body.Position); so cai na
-            # estimativa por tile se nao houver leitura valida. A altura do
-            # clique varia a cada tentativa que falha, pra corrigir sozinho
-            # se o primeiro ponto cair acima/abaixo do modelo (npc sentado).
-            real = self.script.exports_sync.get_rugard_pos()
-            if real and (abs(real[0]) > 0.001 or abs(real[2]) > 0.001):
-                px, pz = real[0], real[2]
-                py = real[1] + REAL_DY_CYCLE[attempt % len(REAL_DY_CYCLE)]
-            else:
-                px, pz = world_x, world_z
-                py = SYNTH_Y_CYCLE[attempt % len(SYNTH_Y_CYCLE)]
-            attempt += 1
-            proj = self.script.exports_sync.get_screen_point_for_world(px, py, pz)
-            if "error" not in proj:
-                sx, sy, sz = proj["screenPos"]
-                screen_w, screen_h = proj["unityScreen"]
-                if sz >= 0 and 0 <= sx <= screen_w and 0 <= sy <= screen_h:
-                    region = get_window_region(self.hwnd)
-                    scale_x = region["width"] / screen_w
-                    scale_y = region["height"] / screen_h
-                    win_x = region["left"] + int(round(sx * scale_x))
-                    win_y = region["top"] + int(round((screen_h - sy) * scale_y))
-                    self.log(f"clicando em ({win_x},{win_y})... (tentativa {attempt}, y={py:.2f})")
-                    # clique + confirmacao + enter formam uma secao critica:
-                    # se outra conta clicar na janela dela no meio desse
-                    # intervalo, ela rouba o foco global do Windows e o
-                    # Enter desta conta vai parar na janela errada (bug
-                    # visto em producao: 2 contas confirmando quase juntas,
-                    # so uma delas de fato entrou no evento).
-                    with click_lock:
+            # DEBUG: posicao do PROPRIO personagem (pra saber se ainda esta
+            # andando -- a camera segue o personagem, entao se ele ainda
+            # esta se movendo no instante do clique, o ponto na tela que
+            # calculamos pode ja estar desatualizado quando o clique
+            # fisico realmente acontece).
+            local_pos = self.script.exports_sync.get_local_pos()
+            moved = None
+            if local_pos and prev_local:
+                moved = ((local_pos[0] - prev_local[0]) ** 2 + (local_pos[2] - prev_local[2]) ** 2) ** 0.5
+            prev_local = local_pos
+            # clique + confirmacao + enter formam uma secao critica:
+            # se outra conta clicar na janela dela no meio desse
+            # intervalo, ela rouba o foco global do Windows e o
+            # Enter desta conta vai parar na janela errada (bug
+            # visto em producao: 2 contas confirmando quase juntas,
+            # so uma delas de fato entrou no evento).
+            #
+            # A projecao (posicao real + camera) e calculada DENTRO do lock,
+            # logo antes do clique: esperar a vez pode levar segundos (cada
+            # conta segura o lock ate 1s esperando o dialogo), e a camera
+            # acompanha o personagem enquanto ele anda -- um ponto calculado
+            # fora do lock ja estaria no lugar errado quando o clique acontece.
+            far = self.script.exports_sync.get_rugard_pos()
+            if local_pos and far and (abs(far[0]) > 0.001 or abs(far[2]) > 0.001):
+                d = ((local_pos[0] - far[0]) ** 2 + (local_pos[2] - far[2]) ** 2) ** 0.5
+                if d > CLICK_MAX_DIST:
+                    time.sleep(0.1)
+                    continue
+            with click_lock:
+                # Body.Position real do NPC; estimativa por tile so se faltar leitura
+                real = self.script.exports_sync.get_rugard_pos()
+                if real and (abs(real[0]) > 0.001 or abs(real[2]) > 0.001):
+                    px, pz = real[0], real[2]
+                    py = real[1] + REAL_DY_CYCLE[attempt % len(REAL_DY_CYCLE)]
+                else:
+                    px, pz = world_x, world_z
+                    py = SYNTH_Y_CYCLE[attempt % len(SYNTH_Y_CYCLE)]
+                attempt += 1
+                proj = self.script.exports_sync.get_screen_point_for_world(px, py, pz)
+                if "error" in proj:
+                    self.log(f"erro na projecao: {proj['error']}")
+                else:
+                    sx, sy, sz = proj["screenPos"]
+                    screen_w, screen_h = proj["unityScreen"]
+                    self.log(
+                        f"[debug] attempt={attempt} dist_npc={(((local_pos[0]-px)**2+(local_pos[2]-pz)**2)**0.5) if local_pos else -1:.1f} local_pos={local_pos} "
+                        f"moved_desde_ultima={('%.3f' % moved) if moved is not None else '?'} sx,sy=({sx:.1f},{sy:.1f})"
+                    )
+                    if sz >= 0 and 0 <= sx <= screen_w and 0 <= sy <= screen_h:
+                        region = get_window_region(self.hwnd)
+                        scale_x = region["width"] / screen_w
+                        scale_y = region["height"] / screen_h
+                        win_x = region["left"] + int(round(sx * scale_x))
+                        win_y = region["top"] + int(round((screen_h - sy) * scale_y))
+                        self.log(f"clicando em ({win_x},{win_y})... (tentativa {attempt}, y={py:.2f})")
                         self.tlog("lock obtido, clicando")
                         focus_window(self.hwnd)
                         double_click_at(win_x, win_y)
                         self.tlog("clique feito")
+                        # DEBUG: mesma projecao logo apos o clique fisico --
+                        # mostra quanto o ponto andou enquanto clicava.
+                        proj2 = self.script.exports_sync.get_screen_point_for_world(px, py, pz)
+                        if "error" not in proj2:
+                            sx2, sy2 = proj2["screenPos"][0], proj2["screenPos"][1]
+                            self.log(
+                                f"[debug] pos-clique sx,sy=({sx2:.1f},{sy2:.1f}) "
+                                f"drift=({sx2 - sx:.1f},{sy2 - sy:.1f})px"
+                            )
                         if self._wait_for_confirmation(region):
                             self.tlog("dialogo visto")
                             focus_window(self.hwnd)
@@ -441,10 +533,8 @@ class AccountWorker(threading.Thread):
                             clicked = True
                         else:
                             self.log("clique nao confirmado, tentando de novo...")
-                else:
-                    self.log("ainda fora da tela, tentando de novo...")
-            else:
-                self.log(f"erro na projecao: {proj['error']}")
+                    else:
+                        self.log("ainda fora da tela, tentando de novo...")
             if not clicked and not self.stop_event.is_set():
                 time.sleep(CLICK_RETRY_INTERVAL)
 
@@ -487,6 +577,8 @@ class App:
         self.workers = []
         self.log_queue = queue.Queue()
         self.confirm_template = None
+        log_path = os.path.join(BASE_DIR, f"log_{time.strftime('%Y%m%d_%H%M%S')}.txt")
+        self.log_file = open(log_path, "a", encoding="utf-8")
         self.build_input_screen()
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
@@ -554,7 +646,13 @@ class App:
         self.root.after(100, self.poll_log_queue)
 
     def append_log(self, name, msg):
-        self.log_queue.put(f"[{time.strftime('%H:%M:%S')}] [{name}] {msg}")
+        line = f"[{time.strftime('%H:%M:%S')}] [{name}] {msg}"
+        self.log_queue.put(line)
+        try:
+            self.log_file.write(line + "\n")
+            self.log_file.flush()
+        except Exception:
+            pass
 
     def poll_log_queue(self):
         try:
@@ -576,10 +674,12 @@ class App:
             self.append_log("*", f"!!! ERRO ao carregar template de confirmacao: {e}")
             return
 
-        shared = {"lock": threading.Lock(), "event": threading.Event(), "cx": None, "cy": None, "set": False, "t_detect": None}
+        shared = {"lock": threading.Lock(), "event": threading.Event(), "cx": None, "cy": None, "set": False, "t_detect": None,
+                  "move_ready": threading.Event()}
         self.append_log("*", "todas as contas conectando, monitorando o spawn do Rugard...")
-        for name in accounts:
-            worker = AccountWorker(name, self.confirm_template, shared, self.append_log, self.stop_event)
+        for i, name in enumerate(accounts):
+            # a PRIMEIRA conta da lista calibra o movimento (se o jogo atualizou); as outras reaproveitam
+            worker = AccountWorker(name, self.confirm_template, shared, self.append_log, self.stop_event, primary=(i == 0))
             worker.start()
             self.workers.append(worker)
 
@@ -590,6 +690,10 @@ class App:
 
     def on_close(self):
         self.stop_event.set()
+        try:
+            self.log_file.close()
+        except Exception:
+            pass
         self.root.after(300, self.root.destroy)
 
 
