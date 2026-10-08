@@ -670,7 +670,7 @@ class App:
 
     def append_log(self, name, msg):
         line = f"[{time.strftime('%H:%M:%S')}] [{name}] {msg}"
-            pass
+        self.log_queue.put(line)
 
     def poll_log_queue(self):
         try:
