@@ -601,8 +601,7 @@ class App:
         self.workers = []
         self.log_queue = queue.Queue()
         self.confirm_template = None
-        log_path = os.path.join(BASE_DIR, f"log_{time.strftime('%Y%m%d_%H%M%S')}.txt")
-        self.log_file = open(log_path, "a", encoding="utf-8")
+        self.log_file = None  # sem log em arquivo: o log fica so na tela
         self.build_input_screen()
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
@@ -671,11 +670,6 @@ class App:
 
     def append_log(self, name, msg):
         line = f"[{time.strftime('%H:%M:%S')}] [{name}] {msg}"
-        self.log_queue.put(line)
-        try:
-            self.log_file.write(line + "\n")
-            self.log_file.flush()
-        except Exception:
             pass
 
     def poll_log_queue(self):
@@ -714,10 +708,6 @@ class App:
 
     def on_close(self):
         self.stop_event.set()
-        try:
-            self.log_file.close()
-        except Exception:
-            pass
         self.root.after(300, self.root.destroy)
 
 
