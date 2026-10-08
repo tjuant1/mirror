@@ -160,6 +160,11 @@ def _load_cache():
         return {}
 
 
+def _cached_ordinal(key):
+    e = _load_cache().get(key, {})
+    return e.get("move_ordinal") if e.get("cal_version") == CAL_VERSION else None
+
+
 def _save_cache(c):
     try:
         with open(CACHE_PATH, "w", encoding="utf-8") as f:
@@ -168,31 +173,46 @@ def _save_cache(c):
         pass
 
 
+CAL_VERSION = 2  # sobe quando o criterio de calibracao muda (invalida caches antigos)
+
+
 def calibrate_move(session, log=print):
-    """Acha qual overload e o 'andar ate la'. Move o personagem ~4 tiles (ele precisa estar parado)."""
+    """Acha qual overload e o 'andar ate la' MAIS CONFIAVEL. Move o personagem ~4 tiles (ele precisa estar parado).
+
+    Testa todos os overloads em 4 direcoes e escolhe o que mais vezes (>=3 de 4) retorna 0 (enfileirou) E chega.
+    Visto ao vivo: o overload que passa em 2 direcoes pode devolver 1 (nao anda) em outras situacoes;
+    so o mais consistente serve."""
     sc = session.create_script(_CALIB_JS)
     sc.load()
+    best_k, best_score = None, 0
     try:
         for k in range(MOVE_CANDIDATES):
-            ok = 0
+            score, fails = 0, 0
             for dx, dy in ((4, 0), (-4, 0), (0, 4), (0, -4)):
                 x0, y0 = sc.exports_sync.pos()
                 tx, ty = x0 + dx, y0 + dy
                 ret = sc.exports_sync.mv(k, tx, ty)
-                t0 = time.time()
-                x1, y1 = x0, y0
-                while time.time() - t0 < 5:
-                    time.sleep(0.4)
-                    x1, y1 = sc.exports_sync.pos()
-                    if max(abs(x1 - tx), abs(y1 - ty)) <= 1:
-                        break
-                arrived = max(abs(x1 - tx), abs(y1 - ty)) <= 1
+                arrived = False
+                if ret == 0:                      # so vale esperar se o comando foi enfileirado
+                    t0 = time.time()
+                    while time.time() - t0 < 5:
+                        time.sleep(0.4)
+                        x1, y1 = sc.exports_sync.pos()
+                        if max(abs(x1 - tx), abs(y1 - ty)) <= 1:
+                            arrived = True
+                            break
                 log("calibrando overload %d: dir=(%d,%d) ret=%s chegou=%s" % (k, dx, dy, ret, arrived))
-                if ret == 0 and arrived:         # enfileirou o comando e chegou no destino
-                    ok += 1
-                    if ok >= 2:                  # 2 direcoes diferentes, pra nao confundir com parede/acaso
-                        return k
-        return None
+                if arrived:
+                    score += 1
+                else:
+                    fails += 1
+                    if fails >= 2:                # nao chega mais a 3/4
+                        break
+            if score > best_score:
+                best_k, best_score = k, score
+            if score == 4:
+                break
+        return best_k if best_score >= 3 else None
     finally:
         sc.unload()
 
@@ -223,7 +243,7 @@ def resolve_all(session, log=print, allow_calibrate=True):
     allow_calibrate=False: nao mexe no personagem; usa o overload do cache (ou 0 se ainda nao calibrado,
     ver out["move_ordinal"] is None) -- depois chame ensure_move() para calibrar/aplicar."""
     out = _resolve_once(session, None)
-    ordinal = _load_cache().get(out["dll_key"], {}).get("move_ordinal")
+    ordinal = _cached_ordinal(out["dll_key"])
     if ordinal is None and allow_calibrate:
         out = ensure_move(session, out, log)
     elif ordinal is not None:
@@ -231,7 +251,7 @@ def resolve_all(session, log=print, allow_calibrate=True):
     return out
 
 
-def ensure_move(session, resolved, log=print, primary=True, ready=None, wait_timeout=120):
+def ensure_move(session, resolved, log=print, primary=True, ready=None, wait_timeout=180):
     """Garante que o overload de movimento esta calibrado para este build e devolve `resolved` atualizado.
 
     primary=True: esta conta calibra (anda o personagem ~4 tiles; precisa estar parado), grava o cache e seta `ready`.
@@ -239,20 +259,20 @@ def ensure_move(session, resolved, log=print, primary=True, ready=None, wait_tim
     se a primaria falhar. Uma trava global garante que nunca calibram duas contas ao mesmo tempo."""
     key = resolved["dll_key"]
     try:
-        ordinal = _load_cache().get(key, {}).get("move_ordinal")
+        ordinal = _cached_ordinal(key)
         if ordinal is None and not primary and ready is not None:
             log("aguardando a conta primaria calibrar o movimento...")
             ready.wait(wait_timeout)
-            ordinal = _load_cache().get(key, {}).get("move_ordinal")
+            ordinal = _cached_ordinal(key)
         if ordinal is None:
             with _CAL_LOCK:
-                ordinal = _load_cache().get(key, {}).get("move_ordinal")  # outra conta pode ter acabado de gravar
+                ordinal = _cached_ordinal(key)  # outra conta pode ter acabado de gravar
                 if ordinal is None:
                     log("build novo detectado -- calibrando a funcao de movimento (personagem precisa estar parado)...")
                     ordinal = calibrate_move(session, log)
                     if ordinal is not None:
                         cache = _load_cache()
-                        cache[key] = {"move_ordinal": ordinal}
+                        cache[key] = {"move_ordinal": ordinal, "cal_version": CAL_VERSION}
                         _save_cache(cache)
                         log("movimento calibrado: overload %d (salvo em rva_cache.json)" % ordinal)
         elif primary:

@@ -26,8 +26,8 @@ r = il2cpp_resolve.resolve_all(session, log=print)
 | **Andar até (`MoveTo`)** | **único caso ambíguo**: 5 overloads idênticos `(Coord,float,UnityAction,bool,bool)->bool` em `LocalCharacterBody`; a ordem **não é estável** entre builds → **calibração por comportamento** |
 
 ### Calibração do movimento
-Com várias contas: a **primeira da lista** calibra (`ensure_move(primary=True)`), as outras esperam e reaproveitam o cache; o hook do `Body.Awake` sobe antes da calibração (`resolve_all(..., allow_calibrate=False)`), então nenhum spawn é perdido. Na 1ª execução de cada build (chave = tamanho+mtime da `GameAssembly.dll`), anda o personagem 4 tiles em até 4
-direções por overload; escolhe o que retorna `0` (comando enfileirado) **e** chega ao destino em 2 direções.
+Com várias contas: a **primeira da lista** calibra (`ensure_move(primary=True)`), as outras esperam e reaproveitam o cache; o hook do `Body.Awake` sobe antes da calibração (`resolve_all(..., allow_calibrate=False)`), então nenhum spawn é perdido. Na 1ª execução de cada build (chave = tamanho+mtime da `GameAssembly.dll`), testa TODOS os overloads (4 tiles em até 4
+direções cada) e escolhe o mais confiável: retorna `0` (enfileirou) **e** chega em ≥3 de 4. (Overload "que passa em 2 direções" já falhou ao vivo devolvendo 1 sem andar.)
 Resultado em `rva_cache.json` ao lado do script/.exe. **O personagem da 1ª conta precisa estar parado.**
 Se o resolvedor disser `nao consegui resolver: X`, aquele item mudou de nome/assinatura: ver `tools/` e `research/`.
 
