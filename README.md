@@ -23,7 +23,7 @@ r = il2cpp_resolve.resolve_all(session, log=print)
 | `Body.Awake`, `Camera.get_main`, `Camera.WorldToScreenPoint_Injected`, `Screen.get_width/height`, `Coord..ctor(int,int)` | nome **não ofuscado** (Unity/engine) |
 | Função que retorna o personagem local | método **estático sem parâmetros** em `GameContext` com retorno `*LocalCharacterBody` |
 | Offsets de `Body` | `il2cpp_class_get_field_from_name` + `il2cpp_field_get_offset` |
-| **Andar até (`MoveTo`)** | **único caso ambíguo**: 5 overloads idênticos `(Coord,float,UnityAction,bool,bool)->bool` em `LocalCharacterBody`; a ordem **não é estável** entre builds → **calibração por comportamento** |
+| **Andar até (`MoveTo`)** | **único caso ambíguo**: vários overloads idênticos `(Coord,float,UnityAction,bool,bool)->bool` em `LocalCharacterBody` (a quantidade varia por build — já visto 5 numa, 3 noutra); a ordem **não é estável** entre builds → **calibração por comportamento**, que descobre a quantidade em runtime |
 
 ### Calibração do movimento
 Com várias contas: a **primeira da lista** calibra (`ensure_move(primary=True)`), as outras esperam e reaproveitam o cache; o hook do `Body.Awake` sobe antes da calibração (`resolve_all(..., allow_calibrate=False)`), então nenhum spawn é perdido. Na 1ª execução de cada build (chave = tamanho+mtime da `GameAssembly.dll`), testa TODOS os overloads (4 tiles em até 4

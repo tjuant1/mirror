@@ -19,3 +19,5 @@ confirm_debug/
 rva_cache.json
 log_*.txt
 tools/*.log
+
+notebook/

@@ -1,0 +1,73 @@
+=== LINHA DO TEMPO (fase de acao; t em ms desde o AGORA) ===
+t=   901  TX     len=12   9643f1c1304f94afc1cb9190
+                  <- ?
+                  <- System.Net.Sockets.Socket$$Send_internal+0xef
+                  <- System.Net.Sockets.Socket$$BeginSendCallback+0x25c
+                  <- System.Threading.ThreadPoolWorkQueue$$Dispatch+0x3b4
+                  <- ?
+                  <- ?
+                  <- ?
+                  <- ?
+t=  2072  TX     len=10   0e4bf3c130f094afc035
+                  <- ?
+                  <- System.Net.Sockets.Socket$$Send_internal+0xef
+                  <- System.Net.Sockets.Socket$$BeginSendCallback+0x25c
+                  <- System.Threading.ThreadPoolWorkQueue$$Dispatch+0x3b4
+                  <- ?
+                  <- ?
+                  <- ?
+                  <- ?
+t=  4628  RX     C1:0E          Protocol.LOJMGCEMDCP
+t=  4629  TX     len=17   36a3ecc1304194a7c2dd5fbe3ab749453b
+                  <- ?
+                  <- System.Net.Sockets.Socket$$Send_internal+0xef
+                  <- System.Net.Sockets.Socket$$BeginSendCallback+0x25c
+                  <- System.Threading.ThreadPoolWorkQueue$$Dispatch+0x3b4
+                  <- ?
+                  <- ?
+                  <- ?
+                  <- ?
+t=  4629  TX     len=20   9142e9c130b494abb2df1820375748b7d09a47bb
+                  <- ?
+                  <- System.Net.Sockets.Socket$$Send_internal+0xef
+                  <- System.Net.Sockets.Socket$$BeginSendCallback+0x25c
+                  <- System.Threading.ThreadPoolWorkQueue$$Dispatch+0x3b4
+                  <- ?
+                  <- ?
+                  <- ?
+                  <- ?
+t=  4795  TX     len=12   b91af1c1304f94afc5cb9190
+                  <- ?
+                  <- System.Net.Sockets.Socket$$Send_internal+0xef
+                  <- System.Net.Sockets.Socket$$BeginSendCallback+0x25c
+                  <- System.Threading.ThreadPoolWorkQueue$$Dispatch+0x3b4
+                  <- ?
+                  <- ?
+                  <- ?
+                  <- ?
+t=  5051  RX     C1:F3:E4       Chat.CHPMLAKAKKB
+t=  7302  RX     C1:F3:E4       Chat.CHPMLAKAKKB
+t= 11444  RX     C1:0F          Protocol.JDOFKCOFADN
+t= 11821  RX     C1:F3:E4       Chat.CHPMLAKAKKB
+t= 13989  RX     C1:0D          Chat.BMLFLDPDNDB
+t= 14655  RX     C1:0E          Protocol.LOJMGCEMDCP
+t= 14655  TX     len=17   0e4becc1304194a7c2cd68be3ab749453b
+                  <- ?
+                  <- System.Net.Sockets.Socket$$Send_internal+0xef
+                  <- System.Net.Sockets.Socket$$BeginSendCallback+0x25c
+                  <- System.Threading.ThreadPoolWorkQueue$$Dispatch+0x3b4
+                  <- ?
+                  <- ?
+                  <- ?
+                  <- ?
+t= 14657  TX     len=20   ad2ee9c130b494abb23522b3375748b7c09147bb
+                  <- ?
+                  <- System.Net.Sockets.Socket$$Send_internal+0xef
+                  <- System.Net.Sockets.Socket$$BeginSendCallback+0x25c
+                  <- System.Threading.ThreadPoolWorkQueue$$Dispatch+0x3b4
+                  <- ?
+                  <- ?
+                  <- ?
+                  <- ?
+t= 15623  RX     C1:F3:E4       Chat.CHPMLAKAKKB
+t= 18660  RX     C1:F3:E4       Chat.CHPMLAKAKKB

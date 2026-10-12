@@ -1,20 +1,27 @@
 """
-Versao com interface grafica do script de producao do Rugard.
+Versao com interface grafica do script de producao do Rugard + coleta dos
+baus do evento.
 
 Fluxo:
   1. Tela simples pedindo os nicks das contas (separados por virgula).
   2. Tela de log ao vivo com botao "Pausar" (para a automacao, mas deixa
      a janela aberta pra revisar o log) e "Fechar" (encerra tudo).
 
-A logica central (deteccao via Body.Awake, movimento via
-LocalCharacterBody (MoveTo), clique via Camera.WorldToScreenPoint,
-confirmacao via template matching) e identica ao rugard_production.py
-ja validado em producao -- so foi encaixada numa interface grafica e
-num design que aceita parar de forma limpa a qualquer momento.
+Por conta, depois de conectar:
+  1. Entra no evento: deteccao do Rugard via Body.Awake, movimento via
+     LocalCharacterBody (MoveTo), clique via Camera.WorldToScreenPoint,
+     confirmacao via template matching e Enter.
+  2. Espera POST_ENTRY_WAIT (6 min) parada.
+  3. Monitora e coleta os baus do evento (2 "Interim Reward Chest" + 1
+     "Final Reward Chest") -- validado ao vivo em varias rodadas.
+
+Enderecos (RVA) e offsets de campo vem todos de il2cpp_resolve.py em
+runtime, nao sao fixos -- sobrevive a updates do jogo.
 """
 import json
 import os
 import queue
+import random
 import sys
 import threading
 import time
@@ -60,8 +67,45 @@ REAL_DY_CYCLE = [0.8, 0.4, 1.2, 0.1, 1.6]  # somado ao Y real (pes) do Body
 SYNTH_Y_CYCLE = [1.7, 1.2, 0.8, 2.2]  # Y absoluto quando so temos o tile
 CLICK_RETRY_INTERVAL = 0.3
 CLICK_RETRY_TIMEOUT = 90.0  # generoso pra contas longe; sai na hora se confirmar antes
+# ja estando dentro do evento nao tem mais pressa -- espaca a vez de cada
+# conta nas acoes criticas (Enter de confirmacao, clique no bau) pra nao
+# ficar "em cima" uma da outra, mesmo que o lock ja evite colisao de verdade.
+ACCOUNT_ACTION_STAGGER = (1.0, 2.0)
 
-CONFIRM_TEMPLATE_PATH = os.path.join(BASE_DIR, "ui_templates", "confirmation.png")
+# --- fase 2: coleta dos baus do evento (depois de entrar no Mirror) ---
+CHEST_NAME_FILTER = "Reward Chest"  # pega "Interim Reward Chest" e "Final Reward Chest"
+CHEST_INDEX_MAX = 50000  # visto ao vivo: ate index=1900
+POST_ENTRY_WAIT = 6 * 60  # so comeca a monitorar/coletar baus depois de entrar e esperar isso
+COLLECT_PHASE_TIMEOUT = 10 * 60  # generoso pra cobrir os 2 Interim + o Final apos a espera acima
+CHEST_CLICK_TIMEOUT = 20.0
+INTERIM_TARGET = 2
+FINAL_TARGET = 1
+# visto ao vivo: 1 tentativa so funcionou em 3 de 4 contas numa rodada (a
+# variacao de altura entre tentativas e o que cobre o caso do 1o ponto cair
+# errado) -- 2 tentativas da uma segunda chance sem exagerar.
+CHEST_MAX_ATTEMPTS = 2
+# um item dropa junto com o bau Interim no mesmo slot/tile -- clicar cedo
+# demais pode pegar so o item por engano. Sem pressa: espera o item
+# despawnar antes de clicar (tempo aleatorio). O bau Final nao tem esse
+# problema, so precisa de tempo pro pop-up de fim de evento aparecer.
+CHEST_ITEM_DESPAWN_WAIT = (55.0, 65.0)
+FINAL_CHEST_WAIT = 5.0
+
+
+def _resource_path(*parts):
+    """Acha um arquivo de recurso (ex: ui_templates/confirmation.png).
+    Se o .exe foi empacotado com ele embutido (--add-data), usa a copia
+    extraida em sys._MEIPASS; senao cai pro comportamento de sempre (ao
+    lado do .exe/script) -- mantem o .exe atual funcionando sem mudanca,
+    ja que ele nao tem nada embutido."""
+    if getattr(sys, "frozen", False):
+        bundled = os.path.join(getattr(sys, "_MEIPASS", ""), *parts)
+        if os.path.exists(bundled):
+            return bundled
+    return os.path.join(BASE_DIR, *parts)
+
+
+CONFIRM_TEMPLATE_PATH = _resource_path("ui_templates", "confirmation.png")
 CONFIRM_MATCH_THRESHOLD = 0.55
 CONFIRM_TIMEOUT = 0.45  # dialogo costuma aparecer ~0.22s apos o clique
 CLICK_MAX_DIST = 10.0  # alcance real fica entre ~4.4 e ~9 tiles; acima disso nem clica (so segura o lock)
@@ -118,16 +162,21 @@ function findImage() {
     return null;
 }
 
-var rugardBody = null;
-function readBodyPos() {
-    if (rugardBody === null) return null;
+function readPosAt(ptr) {
+    if (ptr === null || ptr === undefined) return null;
     try {
-        var p = rugardBody.add(@@OFF_Position@@);
+        var p = ptr.add(@@OFF_Position@@);
         return [p.readFloat(), p.add(4).readFloat(), p.add(8).readFloat()];
     } catch (e) {
         return null;
     }
 }
+
+var rugardBody = null;
+function readBodyPos() { return readPosAt(rugardBody); }
+
+var trackedBodies = {};
+var nextTrackedId = 1;
 
 function readLocalPos() {
     try {
@@ -164,6 +213,14 @@ Interceptor.attach(awakeAddr, {
                     var cy = coordPtr.isNull() ? null : coordPtr.add(0x14).readS32();
                     rugardBody = bodyPtr;
                     send({ event: "found", index: index, name: name, cx: cx, cy: cy, pos: readBodyPos() });
+                }
+                if (index < @@CHEST_INDEX_MAX@@ && name.indexOf(@@CHEST_NAME@@) >= 0) {
+                    var id = nextTrackedId++;
+                    trackedBodies[id] = bodyPtr;
+                    var cp2 = bodyPtr.add(@@OFF_TargetCoordinates@@).readPointer();
+                    var cx2 = cp2.isNull() ? null : cp2.add(0x10).readS32();
+                    var cy2 = cp2.isNull() ? null : cp2.add(0x14).readS32();
+                    send({ event: "chest_found", id: id, name: name, index: index, cx: cx2, cy: cy2, pos: readPosAt(bodyPtr) });
                 }
             } catch (e) {
                 if (attempts < maxAttempts) setTimeout(poll, 30);
@@ -206,6 +263,9 @@ rpc.exports = {
     getRugardPos: function () {
         return readBodyPos();
     },
+    getTrackedPos: function (id) {
+        return readPosAt(trackedBodies[id]);
+    },
     getLocalPos: function () {
         return readLocalPos();
     },
@@ -231,7 +291,9 @@ def build_js(r):
     for k, v in r["offsets"].items():
         js = js.replace("@@OFF_%s@@" % k, hex(v))
     return (js.replace("@@INDEX_MAX@@", str(INDEX_MAX))
-              .replace("@@NPC_NAME@@", json.dumps(NPC_NAME_FILTER)))
+              .replace("@@NPC_NAME@@", json.dumps(NPC_NAME_FILTER))
+              .replace("@@CHEST_INDEX_MAX@@", str(CHEST_INDEX_MAX))
+              .replace("@@CHEST_NAME@@", json.dumps(CHEST_NAME_FILTER)))
 
 
 # so uma conta usa o mouse fisico por vez -- evita que 2 contas clicando
@@ -286,8 +348,14 @@ def double_click_at(x, y):
 
 def press_enter():
     win32api.keybd_event(win32con.VK_RETURN, 0, 0, 0)
-    time.sleep(0.03)
+    time.sleep(0.08)
     win32api.keybd_event(win32con.VK_RETURN, 0, win32con.KEYEVENTF_KEYUP, 0)
+
+
+def press_esc():
+    win32api.keybd_event(win32con.VK_ESCAPE, 0, 0, 0)
+    time.sleep(0.03)
+    win32api.keybd_event(win32con.VK_ESCAPE, 0, win32con.KEYEVENTF_KEYUP, 0)
 
 
 def focus_window(hwnd):
@@ -343,6 +411,7 @@ class AccountWorker(threading.Thread):
         # Rugard -- ou seja, o npc realmente renderizou no cliente dela
         # (independente de quem foi a conta que avisou a posicao primeiro)
         self.locally_visible = False
+        self.chest_queue = queue.Queue()
 
     def attach(self):
         self.hwnd = find_window(self.name)
@@ -397,6 +466,9 @@ class AccountWorker(threading.Thread):
                     self.shared["t_detect"] = time.perf_counter()
                     self.shared["event"].set()
                     self.log(f"*** RUGARD DETECTADO em ({payload['cx']},{payload['cy']}) *** avisando as outras contas")
+        elif payload.get("event") == "chest_found":
+            self.log(f"*** BAU DETECTADO: {payload['name']} (id={payload['id']}) tile=({payload['cx']},{payload['cy']})")
+            self.chest_queue.put(payload)
 
     def run(self):
         try:
@@ -534,9 +606,23 @@ class AccountWorker(threading.Thread):
                             self.tlog("dialogo visto")
                             focus_window(self.hwnd)
                             press_enter()
+                            # so solta o lock quando o dialogo sumir: sem isso a
+                            # proxima conta rouba o foco 3ms depois e o jogo
+                            # (que le teclado por frame) nunca ve o Enter.
+                            for _ in range(3):
+                                if self._wait_dialog_gone(region):
+                                    break
+                                focus_window(self.hwnd)
+                                press_enter()
                             self.tlog("Enter enviado")
                             self.log("*** CONFIRMADO, Enter enviado ***")
                             clicked = True
+                            # ja estamos dentro do evento, sem pressa: espera um
+                            # pouco mais antes de soltar o lock, pra proxima conta
+                            # nao emendar a acao dela logo em seguida
+                            stagger = random.uniform(*ACCOUNT_ACTION_STAGGER)
+                            self.log(f"[stagger] segurando {stagger:.1f}s antes de liberar a vez da proxima conta")
+                            time.sleep(stagger)
                         else:
                             self.log("clique nao confirmado, tentando de novo...")
                     else:
@@ -551,7 +637,101 @@ class AccountWorker(threading.Thread):
         elif not clicked:
             self.log("!!! nao conseguiu confirmar dentro do tempo limite")
 
+        if clicked:
+            self._wait_then_collect_chests()
+
         self._safe_detach()
+
+    def _wait_then_collect_chests(self):
+        self.log(f"entrou no evento -- aguardando {POST_ENTRY_WAIT // 60} minutos antes de monitorar os baus...")
+        waited = 0.0
+        while waited < POST_ENTRY_WAIT and not self.stop_event.is_set():
+            time.sleep(1.0)
+            waited += 1.0
+        if self.stop_event.is_set():
+            self.log("pausado pelo usuario antes de monitorar os baus.")
+            return
+
+        self.log("iniciando monitoramento dos baus...")
+        interim_done, final_done = 0, 0
+        deadline = time.time() + COLLECT_PHASE_TIMEOUT
+        while (interim_done < INTERIM_TARGET or final_done < FINAL_TARGET) and time.time() < deadline and not self.stop_event.is_set():
+            try:
+                chest = self.chest_queue.get(timeout=1.0)
+            except queue.Empty:
+                continue
+            result = self.pickup_chest(chest)
+            if chest["name"].startswith("Interim"):
+                interim_done += 1
+            elif chest["name"].startswith("Final"):
+                final_done += 1
+            self.log(f"progresso: interim={interim_done}/{INTERIM_TARGET} final={final_done}/{FINAL_TARGET} "
+                     f"(ultimo resultado: {'sumiu' if result else 'enviado, confira visualmente'})")
+
+        if interim_done >= INTERIM_TARGET and final_done >= FINAL_TARGET:
+            self.log("*** TODOS OS BAUS TENTADOS -- fim para esta conta (confira visualmente se pegou todos) ***")
+        elif self.stop_event.is_set():
+            self.log("pausado pelo usuario (coleta de baus).")
+        else:
+            self.log(f"!!! tempo esgotado sem tentar todos os baus (interim={interim_done}/{INTERIM_TARGET}, final={final_done}/{FINAL_TARGET})")
+
+    def pickup_chest(self, chest):
+        tid, cx, cy = chest["id"], chest["cx"], chest["cy"]
+        self.log(f"indo pegar {chest['name']} (id={tid}) em ({cx},{cy})...")
+        self.log(f"  move_to: {self.script.exports_sync.move_to(cx, cy, MOVE_DISTANCE)}")
+
+        if chest["name"].startswith("Final"):
+            self.log(f"  bau Final -- esperando {FINAL_CHEST_WAIT:.0f}s pro pop-up de fim de evento aparecer...")
+            time.sleep(FINAL_CHEST_WAIT)
+        else:
+            despawn_wait = random.uniform(*CHEST_ITEM_DESPAWN_WAIT)
+            self.log(f"  esperando {despawn_wait:.0f}s pro item dropado junto despawnar antes de clicar...")
+            time.sleep(despawn_wait)
+
+        if chest["name"].startswith("Final"):
+            self.log("  fechando o pop-up de fim de evento (ESC)...")
+            with click_lock:
+                # confirmado ao vivo com o intervalo entre contas (stagger):
+                # 1 ESC so ja fecha o pop-up de forma confiavel, sem precisar
+                # repetir.
+                focus_window(self.hwnd)
+                press_esc()
+                time.sleep(random.uniform(*ACCOUNT_ACTION_STAGGER))
+
+        deadline = time.time() + CHEST_CLICK_TIMEOUT
+        attempt = 0
+        while time.time() < deadline and attempt < CHEST_MAX_ATTEMPTS and not self.stop_event.is_set():
+            pos = self.script.exports_sync.get_tracked_pos(tid)
+            if pos is None:
+                self.log(f"  {chest['name']} (id={tid}) sumiu -- coletado.")
+                return True
+            px, pz = pos[0], pos[2]
+            py = pos[1] + REAL_DY_CYCLE[attempt % len(REAL_DY_CYCLE)]
+            attempt += 1
+            proj = self.script.exports_sync.get_screen_point_for_world(px, py, pz)
+            if "error" not in proj:
+                sx, sy, sz = proj["screenPos"]
+                screen_w, screen_h = proj["unityScreen"]
+                if sz >= 0 and 0 <= sx <= screen_w and 0 <= sy <= screen_h:
+                    region = get_window_region(self.hwnd)
+                    win_x = region["left"] + int(round(sx * (region["width"] / screen_w)))
+                    win_y = region["top"] + int(round((screen_h - sy) * (region["height"] / screen_h)))
+                    self.log(f"  clicando em ({win_x},{win_y}) (tentativa {attempt}, y={py:.2f})")
+                    with click_lock:
+                        focus_window(self.hwnd)
+                        double_click_at(win_x, win_y)
+                        time.sleep(random.uniform(*ACCOUNT_ACTION_STAGGER))
+                else:
+                    self.log("  bau fora da tela no momento, tentando de novo...")
+            else:
+                self.log(f"  erro na projecao: {proj['error']}")
+            time.sleep(CLICK_RETRY_INTERVAL)
+            if self.script.exports_sync.get_tracked_pos(tid) is None:
+                self.log(f"  {chest['name']} (id={tid}) sumiu -- coletado.")
+                return True
+        self.log(f"  cliques enviados em {chest['name']} (id={tid}); objeto nao e destruido ao "
+                 f"coletar, entao nao da pra confirmar programaticamente -- confira visualmente.")
+        return None
 
     def walk_toward(self, cx, cy):
         """Manda o personagem andar ate o NPC. O tile do proprio NPC costuma ser ocupado/nao andavel:
@@ -582,6 +762,15 @@ class AccountWorker(threading.Thread):
                 return True
             time.sleep(0.05)
         self.log(f"[confirm] dialogo NAO detectado (melhor score={best_score:.3f})")
+        return False
+
+    def _wait_dialog_gone(self, region, timeout=0.8):
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            score, _ = confirmation_score(self.sct, region, self.confirm_template)
+            if score < CONFIRM_MATCH_THRESHOLD:
+                return True
+            time.sleep(0.05)
         return False
 
     def _safe_detach(self):

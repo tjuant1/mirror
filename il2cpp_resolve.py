@@ -3,7 +3,7 @@ Resolucao em runtime dos enderecos do jogo -- substitui RVAs fixos que quebravam
 
 Tudo e achado via API exportada do IL2CPP (nome de classe, nomes NAO ofuscados da Unity /
 Body.Awake, e assinatura de tipos), entao sobrevive a updates do cliente. A unica coisa que nao
-da pra achar so por assinatura e QUAL dos 5 overloads identicos de LocalCharacterBody
+da pra achar so por assinatura e QUAL dos overloads identicos de LocalCharacterBody
 (Coord,float,UnityAction,bool,bool)->bool e o "andar ate la" de verdade; isso e calibrado UMA vez
 por build (andando o personagem 4 tiles) e guardado em rva_cache.json.
 """
@@ -118,8 +118,6 @@ rpc.exports = {
 };
 '''
 
-MOVE_CANDIDATES = 5
-
 
 def _base_dir():
     if getattr(sys, "frozen", False):
@@ -181,12 +179,18 @@ def calibrate_move(session, log=print):
 
     Testa todos os overloads em 4 direcoes e escolhe o que mais vezes (>=3 de 4) retorna 0 (enfileirou) E chega.
     Visto ao vivo: o overload que passa em 2 direcoes pode devolver 1 (nao anda) em outras situacoes;
-    so o mais consistente serve."""
+    so o mais consistente serve. O NUMERO de overloads identicos varia por build (visto ao vivo: 5 numa
+    build, so 3 noutra) -- descobre isso em runtime em vez de assumir um numero fixo, senao tentar testar
+    um overload que nao existe quebra o Frida com "missing argument"."""
     sc = session.create_script(_CALIB_JS)
     sc.load()
     best_k, best_score = None, 0
     try:
-        for k in range(MOVE_CANDIDATES):
+        n_candidates = len(sc.exports_sync.resolve(0).get("move_candidates") or [])
+        log("%d candidato(s) de MoveTo encontrado(s) nesta build" % n_candidates)
+        if n_candidates == 0:
+            return None
+        for k in range(n_candidates):
             score, fails = 0, 0
             for dx, dy in ((4, 0), (-4, 0), (0, 4), (0, -4)):
                 x0, y0 = sc.exports_sync.pos()
